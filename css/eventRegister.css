@@ -1,0 +1,223 @@
+/* Event Page */
+.panel-heading {
+    padding: 0;
+    border: 0;
+    background-color: brown;
+  }
+
+  .panel-title>a,
+  .panel-title>a:active {
+    display: block;
+    padding: 15px;
+    color:antiquewhite;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    word-spacing: 3px;
+    text-decoration: none;
+  }
+
+  .panel-heading a:before {
+    font-family: 'Glyphicons Halflings';
+    content: "\e114";
+    float: right;
+    transition: all 0.5s;
+  }
+
+  .panel-heading.active a:before {
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    transform: rotate(180deg);
+  }
+
+  /* panel body */
+  input[type=text],
+  input[type=date],
+  textarea {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+  }
+
+  input[type=time] {
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+  }
+
+
+  /* Add a background color when the inputs get focus */
+  input[type=text]:focus,
+  input[type=date]:focus,
+  input[type=time]:focus,
+  textarea:focus {
+    background-color: #ddd;
+    outline: none;
+  }
+
+  /* Logo upload */
+  .row {
+    margin-top: 2rem;
+  }
+
+  .imagePreview {
+    width: 100%;
+    height: 180px;
+    background-position: center center;
+    background: url(http://cliquecities.com/assets/no-image-e3699ae23f866f6cbdf8ba2443ee5c4e.jpg);
+    background-color: #fff;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: inline-block;
+    box-shadow: 0px -3px 6px 2px rgba(0, 0, 0, 0.2);
+  }
+
+  .btn-primary {
+    display: block;
+    border-radius: 0px;
+    box-shadow: 0px 4px 6px 2px rgba(0, 0, 0, 0.2);
+    margin-top: -5px;
+  }
+
+  .imgUp {
+    margin-bottom: 15px;
+  }
+
+  .del {
+    position: absolute;
+    top: 0px;
+    right: 15px;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    background-color: rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+  }
+
+  .imgAdd {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #4bd7ef;
+    color: #fff;
+    box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    line-height: 30px;
+    margin-top: 0px;
+    cursor: pointer;
+    font-size: 15px;
+  }
+
+
+  .avatar-upload {
+    position: relative;
+    max-width: 205px;
+
+  }
+
+  .avatar-edit {
+    position: absolute;
+    z-index: 1;
+    top: 10px;
+  }
+
+  .avatar-edit input {
+    display: none;
+  }
+
+  .avatar-edit label {
+    display: inline-block;
+    width: 34px;
+    height: 34px;
+    margin-bottom: 0;
+    border-radius: 100%;
+    background: #FFFFFF;
+    border: 1px solid transparent;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
+    cursor: pointer;
+    font-weight: normal;
+    transition: all .2s ease-in-out;
+  }
+
+  .avatar-edit:hover {
+    background: #f1f1f1;
+    border-color: #d6d6d6;
+  }
+
+  .avatar-edit:after {
+    content: "\f040";
+    font-family: 'FontAwesome';
+    color: #757575;
+    position: absolute;
+    top: 10px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    margin: auto;
+  }
+
+
+
+  .avatar-preview {
+    width: 192px;
+    height: 192px;
+    position: relative;
+    border-radius: 100%;
+    border: 6px solid #F8F8F8;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
+  }
+
+  .avatar-preview div {
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  input[type=checkbox]{
+    display: none;
+  }
+  
+  input[type=checkbox]+ label::before{
+
+    content: "\2713";
+    border: 0.1em solid #000;
+    border-radius: 0.2em;
+    display: inline-block;
+    width: 1.5em;
+    height: 1.5em;
+    padding-left: 0.2em;
+    padding-bottom: 0.3em;
+    margin-right: 0.2em;
+    vertical-align: bottom;
+    color: transparent;
+    transition: .2s;
+  }
+ 
+
+  input[type=checkbox]:checked + label:active::before{
+    transform:scale(0);
+  }
+
+  input[type=checkbox]:checked + label::before{
+    background-color:brown;
+    border-color: brown;
+    color: #fff;
+  }
+  
+  .fa-edit {
+    color: orangered;
+  }
+  .fa-trash {
+    color:orchid;
+  }
+
