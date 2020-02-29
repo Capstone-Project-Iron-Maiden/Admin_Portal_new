@@ -1,48 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compaitable" content="ie=edge" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.1/iconfont/material-icons.min.css"
-    />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="css/bootstrap.min.css" rel="stylesheet" />
-    <link href="css/login.css" rel="stylesheet" />
 
-    <base href="/" />
-  </head>
-  <body>
-    <div class="modal-dailog text-center">
-      <div class="col-5 main-section">
-        <div class="modal-content ">
-          <div class="user-img">
-            <img src="img/img_avatar.png" />
-          </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compaitable" content="ie=edge" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.1/iconfont/material-icons.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="css/bootstrap.min.css" rel="stylesheet" />
+  <link href="css/login.css" rel="stylesheet" />
 
-          <div class="col-12 form-input">
-            <div class="form-group">
-                <input type="text"  class="form-control" placeholder="Enter Username" name="uname" required/><br />
-            </div>
-            <div class="form-group">
-              
-              <input type="password" class="form-control" placeholder="Enter Password" name="psw" required/>
-            </div>
-            <button type="submit" class="btn">Login</button>
-          </div>
-            <div class="forgot">
-                <a href="#">Forgot Password?</a>
-            </div>
-          
+  <base href="/" />
+
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-storage.js"></script>
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+   https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-analytics.js"></script>
+
+  <script src="./form.js"></script>
+
+  <script>
+    window.onload = function () {
+      firebase.auth().signOut();
+      
+    };
+  </script>
+
+  <script>
+    function initApp() {
+      
+      firebase.auth().onAuthStateChanged(function (user) {
+        if (user) {
+          var email = user.email;
+          alert("Active User " + email);
+          location.replace("./dashboard.html");
+        } else {
+          alert("No user!")
+        }
+      });
+    }
+  </script>
+
+
+</head>
+
+<body>
+  <div class="modal-dailog text-center">
+    <div class="col-5 main-section">
+      <div class="modal-content ">
+        <div class="user-img">
+          <img src="img/img_avatar.png" />
         </div>
+
+        <div class="col-12 form-input">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Enter Username" name="email" id="email"
+              required /><br />
+          </div>
+          <div class="form-group">
+
+            <input type="password" class="form-control" placeholder="Enter Password" name="password" id="password"
+              required />
+          </div>
+          <button id="adminLogin" onclick="adminLogin()" class="btn">Login</button>
+        </div>
+        <div class="forgot">
+          <a href="#">Forgot Password?</a>
+        </div>
+
       </div>
     </div>
+  </div>
 
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/script.js"></script>
-    <script src="js/jquery.slimscroll.min.js"></script>
-  </body>
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/script.js"></script>
+  <script src="js/jquery.slimscroll.min.js"></script>
+
+
+  <script>
+    function adminLogin() {
+      if (firebase.auth().currentUser) {
+        // [START signout]
+        firebase.auth().signOut();
+        // [END signout]
+      } else {
+        var email = document.getElementById("email").value;
+        var password = document.getElementById("password").value;
+
+        if (email.length < 4) {
+          alert('Please enter an email address.');
+          return;
+        }
+        if (password.length < 4) {
+          alert('Please enter a password.');
+          return;
+        }
+        // Sign in with email and pass.
+        // [START authwithemail]
+        firebase.auth().signInWithEmailAndPassword(email, password).catch(function (error) {
+          // Handle Errors here.
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          // [START_EXCLUDE]
+          if (errorCode === 'auth/wrong-password') {
+            alert('Wrong password.');
+          } else {
+            alert(errorMessage);
+          }
+          console.log(error);
+          // [END_EXCLUDE]
+        });
+        // [END authwithemail]
+        initApp();
+      }
+
+    }
+  </script>
+
+
+</body>
+
 </html>
