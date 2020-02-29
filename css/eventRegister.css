@@ -17,7 +17,10 @@
     word-spacing: 3px;
     text-decoration: none;
   }
-
+  .panel-body{
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
   .panel-heading a:before {
     font-family: 'Glyphicons Halflings';
     content: "\e114";
@@ -29,7 +32,7 @@
     -webkit-transform: rotate(180deg);
     -moz-transform: rotate(180deg);
     transform: rotate(180deg);
-  }
+  } 
 
   /* panel body */
   input[type=text],
@@ -119,6 +122,7 @@
   .avatar-upload {
     position: relative;
     max-width: 205px;
+    margin-left: 2rem;
 
   }
 
@@ -170,6 +174,7 @@
     height: 192px;
     position: relative;
     border-radius: 100%;
+    margin: 1rem;
     border: 6px solid #F8F8F8;
     box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
   }
@@ -220,4 +225,34 @@
   .fa-trash {
     color:orchid;
   }
+  .plan-upload{
+    margin-left: 1rem;
+  }
+  #file-upload {
+    position: absolute;
+    left: -9999px;
+    margin-left: 3rem;
+  }
+  
+  label[for="file-upload"] {
+    padding: 0.5em;
+    display: inline-table;
+    background: #8691;
+    cursor: pointer;
+  }
+  
+  label[for="file-upload"]:hover {
+    background: #8e989f;
+  }
+  
+  #filename {
+    padding: 0.5em;
+    float: left;
+    width: 150px;
+    white-space: nowrap;
+    overflow: hidden;
+    background: #010a11;
+  }
+  /*# sourceMappingURL=style.css.map */
 
+  
