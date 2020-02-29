@@ -13,6 +13,27 @@
     
     <base href="/">
     <title>Dashboard</title>
+
+
+    <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-storage.js"></script>
+
+    <script src="form.js"></script>
+
+    <script>
+      firebase.auth().onAuthStateChanged(function (user) {
+        if (user) {
+          var email = user.email;
+          alert("Active User " + email);
+        } else {
+          alert("No user!")
+        }
+      });
+    </script>
+
+
   </head>
   <body>
     <!--Navbar Starts-->
@@ -38,16 +59,14 @@
           <li class="nav-item dropdown">
             <a
               class="nav-link dropdown-toggle"
-              href="#"
+              href="javascript:logOut();"
               id="navbarDropdown"
               role="button"
-              data-toggle="dropdown"
               aria-haspopup="true"
               aria-expanded="false"
             >
               Logout
             </a>
-           
           </li>
         </ul>
       </div>
@@ -102,35 +121,81 @@
           </ul>
         </div>
       </div>
+
+
+
+      <script>
+        var imageUrl = ""
+        var total = ""
+                var ref = firebase.database().ref('eventTest/tc');
+        
+                ref.on('value',
+                    (function (snapshot) {
+                        var events = snapshot.val();
+                        console.log(events);
+                        var keys = Object.keys(events);
+                        console.log(keys);
+        
+                        for (var i = 0; i < keys.length; i++) {
+                            var k = keys[i];
+                            var name = events[k].name;
+                            var desc = events[k].desc;
+                            var logo = events[k].logo;
+                            var date = events[k].date;
+                            var location = events[k].location;
+                            var floorplan = events[k].floorplan;
+                            var subTitle = events[k].subTitle;
+                            var time = events[k].time;
+        
+                            
+                            console.log(imageUrl)
+                            var eachinsert = "<div class='col-md-4 my-3'><div class='event-existing'><a href='" + logo + "' target='_blank'><img src='" + logo + "' width='300' height='200'></a><div class='desc'>" + name + "</div></div></div>"
+                            total = total + eachinsert
+        
+                            console.log(name)
+                            console.log(desc)
+                            console.log(logo)
+                            console.log(date)
+                            console.log(location)
+                            console.log(floorplan)
+                            console.log(subTitle)
+                            console.log(time)
+                        }
+        
+        
+                        document.getElementById("eventDisplay").innerHTML = total
+                        /*
+                        events.forEach(myFunction);
+                
+                        function myFunction(item, index) {
+                            document.getElementById("demo").innerHTML += index + ":" + item + "<br>"; 
+                        }*/
+                    }),
+                    (function (error) {
+                        console.log(error)
+                    })
+                );
+        
+                //document.getElementById("eventDisplay").innerHTML = total
+        
+            </script>
+        
+            <script>
+                function retrieveImage(filename) {
+        
+        
+                }
+
+            </script>
+
+
+
       <!--Main content starts-->
       <div class="content">
       <main>
         <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-4 my-3">
-                  <div class="event-existing">
-                    <a href="img/people.jpg" target="_blank"><img src="img/people.jpg" width="300" height="200"></a>
-                    <div class="desc">Add event Title</div>
-                  </div>
-                </div>
-                <div class="col-md-4 my-3">
-                  <div class="event-existing">
-                    <a href="img/people.jpg" target="_blank"><img src="img/people.jpg" width="300" height="200"></a>
-                    <div class="desc">Add event Title</div>
-                  </div>
-                </div>
-                <div class="col-md-4 my-3">
-                  <div class="event-existing">
-                    <a href="img/people.jpg" target="_blank"><img src="img/people.jpg" width="300" height="200"></a>
-                    <div class="desc">Add event Title</div>
-                  </div>
-                </div>
-                <div class="col-md-4 my-3">
-                  <div class="event-existing">
-                    <a href="img/people.jpg" target="_blank"><img src="img/people.jpg" width="300" height="200"></a>
-                    <div class="desc">Add event Title</div>
-                  </div>
-                </div>
+            <div id="eventDisplay" class="row">
+                
             </div>
         </div>
       </main>
