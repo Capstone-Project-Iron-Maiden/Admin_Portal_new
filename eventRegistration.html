@@ -8,19 +8,27 @@
   <link rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.1/iconfont/material-icons.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <link href="css/bootstrap.min.css" rel="stylesheet" />
   <link href="css/style.css" rel="stylesheet" />
   <link href="css/eventRegister.css" rel="stylesheet" />
 
-  <base href="/">
+
   <title>Dashboard</title>
 </head>
 
 <body>
   <script src="js/jquery.slimscroll.min.js"></script>
+  <script src="js/bootstrap.bundle.min.js"></script>
   <script>
+    $('.panel-collapse').on('show.bs.collapse', function () {
+      $(this).siblings('.panel-heading').addClass('active');
+    });
+
+    $('.panel-collapse').on('hide.bs.collapse', function () {
+      $(this).siblings('.panel-heading').removeClass('active');
+    });
     $(document).ready(function () {
       $(".imgAdd").click(function () {
         $(this).closest(".row").find('.imgAdd').before('<div class="avatar-upload"><i class="fa fa-times del"></i>' +
@@ -65,13 +73,7 @@
 
     });
 
-    $('.panel-collapse').on('show.bs.collapse', function () {
-      $(this).siblings('.panel-heading').addClass('active');
-    });
-
-    $('.panel-collapse').on('hide.bs.collapse', function () {
-      $(this).siblings('.panel-heading').removeClass('active');
-    });
+    
 
   </script>
   <!--Navbar Starts-->
@@ -171,7 +173,7 @@
 
                       <label for="date"><b>Date</b></label>
                       <input type="date" placeholder="Enter Date" name="date" required>
-                      <label for="appt">Select a time slot:</label><br />
+                      <label for="timeslot"><b>Select a time slot:</b></label><br />
                       <input type="time" id="appt" name="appt"> <label for="appt">to</label> <input type="time"
                         id="appt" name="appt"><br />
                       <label for="logo"><b>Upload logo</b></label><br>
@@ -304,6 +306,36 @@
                   </div>
                   <!--end collapseThree-->
                 </div>
+                <div class="panel panel-default">
+                  <div class="panel-heading" role="tab" id="headingFour">
+                    <h4 class="panel-title">
+                      <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
+                        href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                        EXHIBITOR INFORMATION
+                      </a>
+                    </h4>
+                  </div>
+                  <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+                    <div class="panel-body">
+                      <label for="logo"><b>Upload logo</b></label><br>
+                      <div class="row">
+                      
+                        <div class="col-sm-3 imgUp">
+                          <div class="file-upload-wrapper">
+                            <input type="file" id="input-file-now-custom-2" class="file-upload"
+                           data-height="500" />
+                         </div>
+                          <input type="text" placeholder="Enter Exhibitor Name" name="exhibitor" required>
+                          <input type="text" placeholder="Enter WebLink URL" name="weblink" required>
+                       
+                        </div><!-- col-2 -->
+                        
+                         
+                      </div><!-- row -->
+                    </div>  
+                    
+                  </div>
+                </div>
               </div>
             </div>
             <!--Modal starts-->
@@ -363,10 +395,10 @@
 
 
   </script>
-  <script src="js/jquery.min.js"></script>
-  <script src="js/bootstrap.bundle.min.js"></script>
-  <script src="js/script.js"></script>
+  
 
+  <script src="js/script.js"></script>
+  <script src="js/jquery.min.js"></script>
   <script src="js/jquery.slim.min.js"></script>
 </body>
 

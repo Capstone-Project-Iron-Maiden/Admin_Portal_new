@@ -7,6 +7,8 @@
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.1/iconfont/material-icons.min.css"/>
+      <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.1/iconfont/material-icons.min.css" />
     <link href="css/bootstrap.min.css" rel="stylesheet" />
     <link href="css/style.css" rel="stylesheet" />
     <link href="css/dashboard.css" rel="stylesheet" />
@@ -193,11 +195,64 @@
       <!--Main content starts-->
       <div class="content">
       <main>
+        
         <div class="container-fluid">
-            <div id="eventDisplay" class="row">
+          <button type="button" class="btn btn-danger btn-lg btn-block" data-toggle="modal" data-target="#myModal">Create New Event</button>
+            <div id="eventDisplay" style="margin-top: 2rem;" class="row">
                 
             </div>
+            <!--Event Register Starts-->
+            
+            <!--Event Register Ends-->
         </div>
+         <!--Modal starts-->
+            <!-- Modal -->
+            <div id="myModal" class="modal fade" role="dialog">
+              <div class="modal-dialog" role="document">
+
+                <!-- Modal content-->
+                <div class="modal-content bg-mattGray">
+                  <div class="modal-header">
+
+                    <h4 class="modal-title text-mattBlackDark">Event Information</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  </div>
+                  <div class="modal-body text-mattBlackDark">
+                    <label for="event"><b>Name of Event</b></label>
+                    <input type="text" placeholder="Enter Event Name" name="event" required>
+
+                    <label for="subtitle"><b>SubTitle</b></label>
+                    <input type="text" placeholder="Enter SubTitle" name="subtitle" required>
+
+                    <label for="desc"><b>Description</b></label>
+                    <input type="text" placeholder="Enter SubTitle" name="subtitle" required>
+
+                    <label for="location"><b>Location</b></label>
+                    <input type="text" placeholder="Enter Location" name="location" required>
+
+                    <label for="date"><b>Date</b></label>
+                    <input type="date" placeholder="Enter Date" name="date" required>
+                    <label for="timeslot"><b>Select a time slot:</b></label><br />
+                    <input type="time" id="appt" name="appt"> <label for="appt">to</label> <input type="time"
+                      id="appt" name="appt"><br />
+                    <label for="logo"><b>Upload logo</b></label><br>
+                    <div class="row">
+                      <div class="col-sm-6 imgUp">
+                        <div class="imagePreview"></div>
+                        <label class="btn btn-primary">
+                          <i class="fa fa-upload" style="font-size:48px"></i><input type="file" class="uploadFile img"
+                            value="Upload Photo" style="width: 0px;height: 0px;overflow: hidden;">
+                        </label>
+                      </div><!-- col-2 -->
+
+                    </div><!-- row -->
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Submit</button>
+                </div>
+              </div>
+              <!--Modal Ends-->
       </main>
       </div>
       <!--Main content ends-->
