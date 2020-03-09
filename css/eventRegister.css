@@ -82,9 +82,21 @@
   }
   .exhibitorPreview {
     width: 80%;
-    height: 130px;
+    height: 100px;
     background-position: center center;
-    background: url(http://cliquecities.com/assets/no-image-e3699ae23f866f6cbdf8ba2443ee5c4e.jpg);
+    background: url(../img/logoeg.jpg);
+    background-color: #fff;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: inline-block;
+    box-shadow: 0px -3px 6px 2px rgba(0, 0, 0, 0.2);
+  }
+
+  .ticketPreview {
+    width: 80%;
+    height: 100px;
+    background-position: center center;
+    background: url(../img/logoeg.jpg);
     background-color: #fff;
     background-size: cover;
     background-repeat: no-repeat;
@@ -95,7 +107,8 @@
   .btn-danger {
     display:block ;
     border-radius: 0px;
-    box-shadow: 0px 4px 6px 2px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 4px 2px 2px rgba(0, 0, 0, 0.2);
+    width:80%;
     margin-top: -5px;
   }
 
@@ -106,6 +119,8 @@
     margin-top: -5px;
   }
 
+ 
+
   .imgUp {
     margin-bottom: 15px;
     
@@ -115,6 +130,28 @@
     position: absolute;
     top: 0px;
     right: 15px;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    background-color: rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+  }
+
+  .exhdel {
+    position: absolute;
+  
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    background-color: rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+  }
+
+  .tickdel {
+    position: absolute;
+  
     width: 30px;
     height: 30px;
     text-align: center;
@@ -137,6 +174,34 @@
     font-size: 15px;
   }
 
+  .exhAdd {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: lightcoral;
+    color: #fff;
+    box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    line-height: 30px;
+    margin-top: 0px;
+    cursor: pointer;
+    font-size: 15px;
+  }
+
+  .tickAdd {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: lightcoral;
+    color: #fff;
+    box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    line-height: 30px;
+    margin-top: 0px;
+    cursor: pointer;
+    font-size: 15px;
+  }
+
 
   .avatar-upload {
     position: relative;
@@ -145,17 +210,18 @@
 
   }
 
-  .avatar-edit {
+  .avatar-upload .avatar-edit {
     position: absolute;
     z-index: 1;
     top: 10px;
   }
+  
 
-  .avatar-edit input {
+  .avatar-upload .avatar-edit input {
     display: none;
   }
 
-  .avatar-edit label {
+  .avatar-upload .avatar-edit input + label {
     display: inline-block;
     width: 34px;
     height: 34px;
@@ -169,12 +235,12 @@
     transition: all .2s ease-in-out;
   }
 
-  .avatar-edit:hover {
+  .avatar-upload .avatar-edit input + label:hover {
     background: #f1f1f1;
     border-color: #d6d6d6;
   }
 
-  .avatar-edit:after {
+  .avatar-upload .avatar-edit input + label:after {
     content: "\f040";
     font-family: 'FontAwesome';
     color: #757575;
@@ -188,7 +254,7 @@
 
 
 
-  .avatar-preview {
+  .avatar-upload .avatar-preview {
     width: 192px;
     height: 192px;
     position: relative;
@@ -198,7 +264,7 @@
     box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
   }
 
-  .avatar-preview div {
+  .avatar-upload .avatar-preview > div  {
     width: 100%;
     height: 100%;
     border-radius: 100%;

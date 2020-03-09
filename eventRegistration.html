@@ -8,8 +8,9 @@
   <link rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.1/iconfont/material-icons.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
   <link href="css/bootstrap.min.css" rel="stylesheet" />
   <link href="css/style.css" rel="stylesheet" />
   <link href="css/eventRegister.css" rel="stylesheet" />
@@ -31,22 +32,37 @@
     });
     $(document).ready(function () {
       $(".imgAdd").click(function () {
-        $(this).closest(".row").find('.imgAdd').before('<div class="avatar-upload"><i class="fa fa-times del"></i>' +
-          '<div class="avatar-edit" data-toggle="modal" data-target="#myModal">' +
-          '<input type="file" id="imageUpload" accept=".png, .jpg, .jpeg" />' +
-          '<label for="imageUpload"></label>' +
-          '</div>' +
-          '<div class="avatar-preview">' +
-          '<div id="imageSpPreview" style="background-image: url(http://i.pravatar.cc/500?img=7);">' +
-          '</div>' +
+        $(this).closest(".row").find('.imgAdd').before('<div class="col-md-5 bg-mattBlackLight" style="margin: 1rem;"><i class="fa fa-times del"></i>'+
+                        '<div class="avatar-upload">'+
+                          '<div class="avatar-edit">'+
+                            '<input type="file" id="imageUpload" accept=".png, .jpg, .jpeg" />'+
+                            '<label for="imageUpload"></label>'+
+                          '</div>'+
+                          '<div class="avatar-preview">'+
+                            '<div id="imagePreview" style="background-image: url(http://i.pravatar.cc/500?img=7);">'+
+                            '</div>'+
+                          '</div>'+
+                        '</div>'+
+                        '<input type="checkbox" id="keySpeaker" name="keySpeaker" value="Key Speaker" checked="checked">'+
 
-          '</div>' +
-          '<div class="desc" style="margin:0.5rem;>Speaker Name populated</div>' +
+                          '<label for="keySpeaker">Key Speaker</label><br/>'+
+                        '<label class="text-mattBlackDark" for="event"><b>Speaker Name</b></label>'+
+                        '<input type="text" placeholder="Enter Speaker Name" name="speaker" required>'+
+    
+    
+                        '<label class="text-mattBlackDark" for="title"><b>Title Name</b></label>'+
+                        '<input type="text" placeholder="Enter Title of speaker" name="title" required>'+
+    
+                        '<label class="text-mattBlackDark" for="comapany"><b>Comapany Name</b></label>'+
+                        '<input type="text" placeholder="Enter Company name of speaker" name="company" required>'+
+                        '<label class="text-mattBlackDark" for="bio"><b>Bio</b></label>'+
+                        '<textarea id="bio" placeholder="Type bio here!" rows="4" cols="50"></textarea>'+
+                        '<label class="text-mattBlackDark" for="link"><b>Web Link</b></label>'+
+                        '<input type="text" placeholder="Copy url here" name="link" required>'+
+    
 
-          '<input type="checkbox" id="keySpeaker" name="keySpeaker" value="Key Speaker" checked="checked">' +
-
-          '<label for="keySpeaker">Key Speaker</label>' +
-          '</div>');
+                          
+                        '</div>');
       });
       $(document).on("click", "i.del", function () {
         $(this).parent().remove();
@@ -69,6 +85,45 @@
           }
 
         });
+      });
+
+// Add  and delete exhibitor image
+$(".exhAdd").click(function () {
+        $(this).closest(".row").find('.exhAdd').before('<div class="w-25 p-3 imgUp"><i class="fa fa-times exhdel"></i>'+
+                          '<div class="exhibitorPreview"></div>'+
+                          '<label class="btn btn-danger">'+
+                            '<i class="fa fa-upload" style="font-size:20px"></i><input type="file" class="uploadFile img"'+
+                              'value="Upload Photo" style="width: 0px;height: 0px;overflow: hidden;">'+
+                          '</label>'+
+                          '<input type="text" placeholder="Enter Exhibitor Name" name="exhibitor" required>'+
+                        '<input type="text" placeholder="Enter WebLink URL" name="weblink" required>'+
+                        '</div><!-- col-2 -->');
+      });
+
+
+      $(document).on("click", "i.exhdel", function () {
+        $(this).parent().remove();
+      });
+
+   
+
+
+       // Add  and delete ticket image
+       $(".tickAdd").click(function () {
+        $(this).closest(".row").find('.tickAdd').before('<div class="w-25 p-3 imgUp"><i class="fa fa-times tickdel"></i>'+
+                          '<div class="ticketPreview"></div>'+
+                          '<label class="btn btn-danger">'+
+                            '<i class="fa fa-upload" style="font-size:20px"></i><input type="file" class="uploadFile img"'+
+                              'value="Upload Photo" style="width: 0px;height: 0px;overflow: hidden;">'+
+                          '</label>'+
+                          '<input type="text" placeholder="Enter Ticket Amount" name="amount" required>'+
+                        '<input type="text" placeholder="Enter Ticket Desc" name="ticketDesc" required>'+
+                        '</div><!-- col-2 -->');
+      });
+
+
+      $(document).on("click", "i.tickdel", function () {
+        $(this).parent().remove();
       });
 
     });
@@ -105,22 +160,22 @@
       <div class="sidebar">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a href="#" class="nav-link px-2"><i class="material-icons icon">
+            <a href="dashboard.html" class="nav-link px-2"><i class="material-icons icon">
                 dashboard
               </i><span class="text">Dashboard</span></a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link px-2"><i class="material-icons icon">
+            <a href="userprofile.html" class="nav-link px-2"><i class="material-icons icon">
                 person
               </i><span class="text">User Profile</span></a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link px-2"><i class="material-icons icon">
+            <a href="speakers.html" class="nav-link px-2"><i class="material-icons icon">
                 face
               </i><span class="text">Speakers</span></a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link px-2"><i class="material-icons icon">
+            <a href="eventRegistration.html" class="nav-link px-2"><i class="material-icons icon">
                 assignment
               </i><span class="text">Event Register</span></a>
           </li>
@@ -179,8 +234,8 @@
                       <label for="logo"><b>Upload logo</b></label><br>
                       <div class="row">
                         <div class="col-sm-2 imgUp">
-                          <div class="imagePreview"></div>
-                          <label class="btn btn-primary">
+                          <div class="imagePreview">
+                          <label class="btn btn-primary"></div>
                             <i class="fa fa-upload" style="font-size:48px"></i><input type="file" class="uploadFile img"
                               value="Upload Photo" style="width: 0px;height: 0px;overflow: hidden;">
                           </label>
@@ -203,27 +258,40 @@
                     <div class="panel-body">
                       <div class="row">
 
-
-                        <div class="avatar-upload"><i class="fa fa-times del"></i>
-                          <div class="avatar-edit" data-toggle="modal" data-target="#myModal">
+                        <div class="col-md-5 bg-mattBlackLight" style="margin: 1rem;"><i class="fa fa-times del"></i>
+                        <div class="avatar-upload">
+                          <div class="avatar-edit">
                             <input type="file" id="imageUpload" accept=".png, .jpg, .jpeg" />
                             <label for="imageUpload"></label>
                           </div>
                           <div class="avatar-preview">
-                            <div id="imageSpPreview" style="background-image: url(http://i.pravatar.cc/500?img=7);">
+                            <div id="imagePreview" style="background-image: url(http://i.pravatar.cc/500?img=7);">
                             </div>
-
                           </div>
-                          <div class="desc" style="margin:0.5rem;">Speaker Name populated
-                          </div>
-
-                          <input type="checkbox" id="keySpeaker" name="keySpeaker" value="Key Speaker"
+                        </div>
+                        <input type="checkbox" id="keySpeaker" name="keySpeaker" value="Key Speaker"
                             checked="checked">
 
-                          <label for="keySpeaker">Key Speaker</label>
-                        </div>
+                          <label for="keySpeaker">Key Speaker</label><br/>
+                        <label class="text-mattBlackDark" for="event"><b>Speaker Name</b></label>
+                        <input type="text" placeholder="Enter Speaker Name" name="speaker" required>
+    
+    
+                        <label class="text-mattBlackDark" for="title"><b>Title Name</b></label>
+                        <input type="text" placeholder="Enter Title of speaker" name="title" required>
+    
+                        <label class="text-mattBlackDark" for="comapany"><b>Comapany Name</b></label>
+                        <input type="text" placeholder="Enter Company name of speaker" name="company" required>
+                        <label class="text-mattBlackDark" for="bio"><b>Bio</b></label>
+                        <textarea id="bio" placeholder="Type bio here!" rows="4" cols="50"></textarea>
+                        <label class="text-mattBlackDark" for="link"><b>Web Link</b></label>
+                        <input type="text" placeholder="Copy url here" name="link" required>
+    
 
-                        <i class="fa fa-plus float-right imgAdd"></i>
+                          
+                        </div><i class="fa fa-plus float-right imgAdd"></i>
+                      </div>
+                        
                       </div>
 
                     </div>
@@ -234,7 +302,7 @@
                     <h4 class="panel-title">
                       <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
                         href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                        SCHEDULE INFO
+                        SCHEDULE INFORMATION
                       </a>
                     </h4>
                   </div>
@@ -317,26 +385,57 @@
                   </div>
                   <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
                     <div class="panel-body">
-                      <label for="logo"><b>Upload logo</b></label><br>
+                     
                       <div class="row">
-                      
-                        <div class="col-sm-3 imgUp">
-                          <div class="file-upload-wrapper">
-                            <input type="file" id="input-file-now-custom-2" class="file-upload"
-                           data-height="500" />
-                         </div>
+                        <div class="w-25 p-3 imgUp"><i class="fa fa-times exhdel"></i>
+                          <div class="exhibitorPreview"></div>
+                          <label class="btn btn-danger">
+                            <i class="fa fa-upload" style="font-size:20px"></i><input type="file" class="uploadFile img"
+                              value="Upload Photo" style="width: 0px;height: 0px;overflow: hidden;">
+                          </label>
                           <input type="text" placeholder="Enter Exhibitor Name" name="exhibitor" required>
-                          <input type="text" placeholder="Enter WebLink URL" name="weblink" required>
-                       
+                        <input type="text" placeholder="Enter WebLink URL" name="weblink" required>
                         </div><!-- col-2 -->
-                        
-                         
+                        <i class="fa fa-plus float-right exhAdd"></i>
+
                       </div><!-- row -->
                     </div>  
                     
                   </div>
                 </div>
-              </div>
+                <div class="panel panel-default">
+                  <div class="panel-heading" role="tab" id="headingFive">
+                    <h4 class="panel-title">
+                      <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
+                        href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                        TICKET INFORMATION
+                      </a>
+                    </h4>
+                  </div>
+                  <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
+                    <div class="panel-body">
+                     
+                      <div class="row">
+                        <div class="w-25 p-3 imgUp"><i class="fa fa-times tickdel"></i>
+                          <div class="ticketPreview"></div>
+                          <label class="btn btn-danger">
+                            <i class="fa fa-upload" style="font-size:20px"></i><input type="file" class="uploadFile img"
+                              value="Upload Photo" style="width: 0px;height: 0px;overflow: hidden;">
+                          </label>
+                          <input type="text" placeholder="Enter Ticket Amount" name="amount" required>
+                        <input type="text" placeholder="Enter Ticket Desc" name="ticketDesc" required>
+                        </div><!-- col-2 -->
+                        <i class="fa fa-plus float-right tickAdd"></i>
+
+                      </div><!-- row -->
+                    </div>  
+                    
+                  </div>
+                </div>
+                <buttons class="btn btn-secondary badge-pill btn-lg btn-block">SUBMIT</buttons>
+              </div><!--col-sm-12 my-2 ends-->
+              
+              
             </div>
             <!--Modal starts-->
             <!-- Modal -->
@@ -384,7 +483,10 @@
               </div>
               <!--Modal Ends-->
             </div>
-          </div>
+          
+          
+          
+          </div><!--container-fluid ends-->
       </main>
     </div>
     <!--Main content ends-->
