@@ -169,7 +169,7 @@ $(".exhAdd").click(function () {
                 person
               </i><span class="text">User Profile</span></a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a href="speakers.html" class="nav-link px-2"><i class="material-icons icon">
                 face
               </i><span class="text">Speakers</span></a>
@@ -183,7 +183,7 @@ $(".exhAdd").click(function () {
             <a href="#" class="nav-link px-2"><i class="material-icons icon">
                 settings
               </i><span class="text">Settings</span></a>
-          </li>
+          </li> -->
           <li class="nav-item">
             <a href="#" class="nav-link sideMenuToggler px-2"><i class="material-icons icon">
                 view_list
@@ -207,41 +207,53 @@ $(".exhAdd").click(function () {
                     <h4 class="panel-title">
                       <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
                         aria-expanded="true" aria-controls="collapseOne">
-                        EVENT INFORMATION
+                        EVENT INFORMATION 
                       </a>
                     </h4>
                   </div>
                   <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                   
                     <div class="panel-body">
+                      <div class="mobilePreview"> 
+                        <i class="fa fa-mobile float-right mobPreview"></i><figure>
+                          <img src="./img/Home_web.png" width="400" height="300" alt="photo">
+                          </figure>
+                        
+                         </div>
+                      <!-- <div class ="row"> 
+                        <div class="col-sm-8 ">  -->
+                      <label for="logo"><b>Upload logo</b></label>&nbsp;&nbsp;&nbsp;<span class="numberCircle">1</span><br/>
+                      <div class="col-sm-2 text-center imgUp" style="margin: 1rem;">
+                        <div class="imagePreview"></div>
+                    <label class="btn btn-primary">
+                      Upload<input type="file" class="uploadFile img" value="Upload Photo" style="width: 0px;height: 0px;overflow: hidden;">
+                            </label>
+                      </div><!-- col-2 -->
 
-                      <label for="event"><b>Name of Event</b></label>
+                      <label for="event"><b>Name of Event</b></label> 
                       <input type="text" placeholder="Enter Event Name" name="event" required>
 
-                      <label for="subtitle"><b>SubTitle</b></label>
+                      <label for="subtitle"><b>SubTitle</b></label>&nbsp;&nbsp;&nbsp;<span class="numberCircle">2</span><br/>
                       <input type="text" placeholder="Enter SubTitle" name="subtitle" required>
 
-                      <label for="desc"><b>Description</b></label>
-                      <input type="text" placeholder="Enter SubTitle" name="subtitle" required>
-
-                      <label for="location"><b>Location</b></label>
+                      <label for="date"><b>Date</b></label> &nbsp;&nbsp;&nbsp;<span class="numberCircle">3</span><br/>
+                      <input type="date" placeholder="Enter Date" name="date" required>
+                      <label for="location"><b>Location</b></label> &nbsp;&nbsp;&nbsp;<span class="numberCircle">4</span><br/>
                       <input type="text" placeholder="Enter Location" name="location" required>
 
-                      <label for="date"><b>Date</b></label>
-                      <input type="date" placeholder="Enter Date" name="date" required>
-                      <label for="timeslot"><b>Select a time slot:</b></label><br />
+                      <label for="timeslot"><b>Select a time slot:</b></label>&nbsp;&nbsp;&nbsp;<span class="numberCircle">5</span><br/><br />
                       <input type="time" id="appt" name="appt"> <label for="appt">to</label> <input type="time"
                         id="appt" name="appt"><br />
-                      <label for="logo"><b>Upload logo</b></label><br>
-                      <div class="row">
-                        <div class="col-sm-2 imgUp">
-                          <div class="imagePreview">
-                          <label class="btn btn-primary"></div>
-                            <i class="fa fa-upload" style="font-size:48px"></i><input type="file" class="uploadFile img"
-                              value="Upload Photo" style="width: 0px;height: 0px;overflow: hidden;">
-                          </label>
-                        </div><!-- col-2 -->
 
-                      </div><!-- row -->
+                      <label for="desc"><b>Description</b></label>
+                      <textarea id="bio" placeholder="Type Description here!" rows="4" cols="50"></textarea>
+
+                     <!-- </div> 
+                     
+                </div>  -->
+                      
+                      
+                     
                     </div>
                   </div>
                 </div>
@@ -256,9 +268,15 @@ $(".exhAdd").click(function () {
                   </div>
                   <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
                     <div class="panel-body">
+                      <div class="mobilePreview"> 
+                        <i class="fa fa-mobile float-right mobPreview"></i><figure>
+                          <img src="./img/Speaker_web.png" width="400" height="300" alt="photo">
+                          </figure>
+                        
+                         </div>
                       <div class="row">
 
-                        <div class="col-md-5 bg-mattBlackLight" style="margin: 1rem;"><i class="fa fa-times del"></i>
+                        <div class="col-md-3 bg-mattBlackLight" style="margin: 1rem;"><i class="fa fa-times del"></i>
                         <div class="avatar-upload">
                           <div class="avatar-edit">
                             <input type="file" id="imageUpload" accept=".png, .jpg, .jpeg" />
@@ -282,8 +300,7 @@ $(".exhAdd").click(function () {
     
                         <label class="text-mattBlackDark" for="comapany"><b>Comapany Name</b></label>
                         <input type="text" placeholder="Enter Company name of speaker" name="company" required>
-                        <label class="text-mattBlackDark" for="bio"><b>Bio</b></label>
-                        <textarea id="bio" placeholder="Type bio here!" rows="4" cols="50"></textarea>
+          
                         <label class="text-mattBlackDark" for="link"><b>Web Link</b></label>
                         <input type="text" placeholder="Copy url here" name="link" required>
     
@@ -302,13 +319,20 @@ $(".exhAdd").click(function () {
                     <h4 class="panel-title">
                       <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
                         href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                        SCHEDULE INFORMATION
+                        SCHEDULE INFORMATION 
+                         
                       </a>
                     </h4>
                   </div>
                   <div id="collapseThree" class="panel-collapse collapse" role="tabpanel"
                     aria-labelledby="headingThree">
                     <div class="panel-body">
+                      <div class="mobilePreview"> 
+                        <i class="fa fa-mobile float-right mobPreview"></i><figure>
+                          <img src="http://lorempixel.com/400/300/" width="400" height="300" alt="photo">
+                          </figure>
+                        
+                         </div>
                       <div class="table-responsive col-md-10">
                         <table class="table table-bordered table-striped table-hover table-condensed  text-center"
                           id="DyanmicTable">
@@ -324,7 +348,13 @@ $(".exhAdd").click(function () {
                                 Speaker Name
                               </th>
                               <th class="text-center">
+                                Speaker Title
+                              </th>
+                              <th class="text-center">
                                 Room Number
+                              </th>
+                              <th class="text-center">
+                                More Info Link
                               </th>
                               <th class="text-center">
                                 <button id="addNewRow" class="btn btn-info badge-pill btn-sm">Add New
@@ -344,7 +374,13 @@ $(".exhAdd").click(function () {
                                 Tim
                               </td>
                               <td>
+
+                              </td>
+                              <td>
                                 N 201
+                              </td>
+                              <td>
+                               www.lklkl.com
                               </td>
                             </tr>
                             <tr>
@@ -358,8 +394,14 @@ $(".exhAdd").click(function () {
                                 1234567890
                               </td>
                               <td>
+                                
+                              </td>
+                              <td>
                                 1234567890
                               </td>
+                              <td>
+                                www.lklkl.com
+                               </td>
                             </tr>
                           </tbody>
                         </table>
