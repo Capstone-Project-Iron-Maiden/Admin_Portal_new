@@ -32,7 +32,7 @@
     });
     $(document).ready(function () {
       $(".imgAdd").click(function () {
-        $(this).closest(".row").find('.imgAdd').before('<div class="col-md-5 bg-mattBlackLight" style="margin: 1rem;"><i class="fa fa-times del"></i>'+
+        $(this).closest(".row").find('.imgAdd').before('<div class="col-md-3 bg-mattBlackLight" style="margin: 1rem;"><i class="fa fa-times del"></i>'+
                         '<div class="avatar-upload">'+
                           '<div class="avatar-edit">'+
                             '<input type="file" id="imageUpload" accept=".png, .jpg, .jpeg" />'+
@@ -55,8 +55,6 @@
     
                         '<label class="text-mattBlackDark" for="comapany"><b>Comapany Name</b></label>'+
                         '<input type="text" placeholder="Enter Company name of speaker" name="company" required>'+
-                        '<label class="text-mattBlackDark" for="bio"><b>Bio</b></label>'+
-                        '<textarea id="bio" placeholder="Type bio here!" rows="4" cols="50"></textarea>'+
                         '<label class="text-mattBlackDark" for="link"><b>Web Link</b></label>'+
                         '<input type="text" placeholder="Copy url here" name="link" required>'+
     
