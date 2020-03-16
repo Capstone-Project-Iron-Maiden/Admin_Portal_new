@@ -11,7 +11,7 @@ body{
     padding:0;
 }
 .modal-content{
-    background-color: #434e5a;
+    background: rgba(0, 0, 0, 0.78);
     opacity: .85;
     padding: 0 18px;
     border-radius: 10px;
