@@ -15,8 +15,17 @@
   <link href="css/style.css" rel="stylesheet" />
   <link href="css/eventRegister.css" rel="stylesheet" />
 
+  <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-storage.js"></script>
+
+  <script src="form.js"></script>
+
+
 
   <title>Dashboard</title>
+
 </head>
 
 <body>
@@ -32,35 +41,35 @@
     });
     $(document).ready(function () {
       $(".imgAdd").click(function () {
-        $(this).closest(".row").find('.imgAdd').before('<div class="col-md-3 bg-mattBlackLight" style="margin: 1rem;"><i class="fa fa-times del"></i>'+
-                        '<div class="avatar-upload">'+
-                          '<div class="avatar-edit">'+
-                            '<input type="file" id="imageUpload" accept=".png, .jpg, .jpeg" />'+
-                            '<label for="imageUpload"></label>'+
-                          '</div>'+
-                          '<div class="avatar-preview">'+
-                            '<div id="imagePreview" style="background-image: url(http://i.pravatar.cc/500?img=7);">'+
-                            '</div>'+
-                          '</div>'+
-                        '</div>'+
-                        '<input type="checkbox" id="keySpeaker" name="keySpeaker" value="Key Speaker" checked="checked">'+
+        $(this).closest(".row").find('.imgAdd').before('<div class="col-md-3 bg-mattBlackLight" style="margin: 1rem;"><i class="fa fa-times del"></i>' +
+          '<div class="avatar-upload">' +
+          '<div class="avatar-edit">' +
+          '<input type="file" id="imageUpload" accept=".png, .jpg, .jpeg" />' +
+          '<label for="imageUpload"></label>' +
+          '</div>' +
+          '<div class="avatar-preview">' +
+          '<div id="imagePreview" style="background-image: url(http://i.pravatar.cc/500?img=7);">' +
+          '</div>' +
+          '</div>' +
+          '</div>' +
+          '<input type="checkbox" id="keySpeaker" name="keySpeaker" value="Key Speaker">' +
 
-                          '<label for="keySpeaker">Key Speaker</label><br/>'+
-                        '<label class="text-mattBlackDark" for="event"><b>Speaker Name</b></label>'+
-                        '<input type="text" placeholder="Enter Speaker Name" name="speaker" required>'+
-    
-    
-                        '<label class="text-mattBlackDark" for="title"><b>Title Name</b></label>'+
-                        '<input type="text" placeholder="Enter Title of speaker" name="title" required>'+
-    
-                        '<label class="text-mattBlackDark" for="comapany"><b>Comapany Name</b></label>'+
-                        '<input type="text" placeholder="Enter Company name of speaker" name="company" required>'+
-                        '<label class="text-mattBlackDark" for="link"><b>Web Link</b></label>'+
-                        '<input type="text" placeholder="Copy url here" name="link" required>'+
-    
+          '<label for="keySpeaker">Key Speaker</label><br/>' +
+          '<label class="text-mattBlackDark" for="event"><b>Speaker Name</b></label>' +
+          '<input type="text" id="name" placeholder="Enter Speaker Name" name="speaker" required>' +
 
-                          
-                        '</div>');
+
+          '<label class="text-mattBlackDark" for="title"><b>Title Name</b></label>' +
+          '<input type="text" id="title" placeholder="Enter Title of speaker" name="title" required>' +
+
+          '<label class="text-mattBlackDark" for="company"><b>Company Name</b></label>' +
+          '<input type="text" id="company" placeholder="Enter Company name of speaker" name="company" required>' +
+          '<label class="text-mattBlackDark" for="link"><b>Web Link</b></label>' +
+          '<input type="text" id="link" placeholder="Copy url here" name="link" required>' +
+
+
+
+          '</div>');
       });
       $(document).on("click", "i.del", function () {
         $(this).parent().remove();
@@ -85,17 +94,17 @@
         });
       });
 
-// Add  and delete exhibitor image
-$(".exhAdd").click(function () {
-        $(this).closest(".row").find('.exhAdd').before('<div class="w-25 p-3 imgUp"><i class="fa fa-times exhdel"></i>'+
-                          '<div class="exhibitorPreview"></div>'+
-                          '<label class="btn btn-danger">'+
-                            '<i class="fa fa-upload" style="font-size:20px"></i><input type="file" class="uploadFile img"'+
-                              'value="Upload Photo" style="width: 0px;height: 0px;overflow: hidden;">'+
-                          '</label>'+
-                          '<input type="text" placeholder="Enter Exhibitor Name" name="exhibitor" required>'+
-                        '<input type="text" placeholder="Enter WebLink URL" name="weblink" required>'+
-                        '</div><!-- col-2 -->');
+      // Add  and delete exhibitor image
+      $(".exhAdd").click(function () {
+        $(this).closest(".row").find('.exhAdd').before('<div class="w-25 p-3 imgUp"><i class="fa fa-times exhdel"></i>' +
+          '<div class="exhibitorPreview"></div>' +
+          '<label class="btn btn-danger">' +
+          '<i class="fa fa-upload" style="font-size:20px"></i><input type="file" class="uploadFile img"' +
+          'value="Upload Photo" style="width: 0px;height: 0px;overflow: hidden;">' +
+          '</label>' +
+          '<input type="text" placeholder="Enter Exhibitor Name" name="exhibitor" required>' +
+          '<input type="text" placeholder="Enter WebLink URL" name="weblink" required>' +
+          '</div><!-- col-2 -->');
       });
 
 
@@ -103,20 +112,20 @@ $(".exhAdd").click(function () {
         $(this).parent().remove();
       });
 
-   
 
 
-       // Add  and delete ticket image
-       $(".tickAdd").click(function () {
-        $(this).closest(".row").find('.tickAdd').before('<div class="w-25 p-3 imgUp"><i class="fa fa-times tickdel"></i>'+
-                          '<div class="ticketPreview"></div>'+
-                          '<label class="btn btn-danger">'+
-                            '<i class="fa fa-upload" style="font-size:20px"></i><input type="file" class="uploadFile img"'+
-                              'value="Upload Photo" style="width: 0px;height: 0px;overflow: hidden;">'+
-                          '</label>'+
-                          '<input type="text" placeholder="Enter Ticket Amount" name="amount" required>'+
-                        '<input type="text" placeholder="Enter Ticket Desc" name="ticketDesc" required>'+
-                        '</div><!-- col-2 -->');
+
+      // Add  and delete ticket image
+      $(".tickAdd").click(function () {
+        $(this).closest(".row").find('.tickAdd').before('<div class="w-25 p-3 imgUp"><i class="fa fa-times tickdel"></i>' +
+          '<div class="ticketPreview"></div>' +
+          '<label class="btn btn-danger">' +
+          '<i class="fa fa-upload" style="font-size:20px"></i><input type="file" class="uploadFile img"' +
+          'value="Upload Photo" style="width: 0px;height: 0px;overflow: hidden;">' +
+          '</label>' +
+          '<input type="text" placeholder="Enter Ticket Amount" name="amount" required>' +
+          '<input type="text" placeholder="Enter Ticket Desc" name="ticketDesc" required>' +
+          '</div><!-- col-2 -->');
       });
 
 
@@ -126,7 +135,7 @@ $(".exhAdd").click(function () {
 
     });
 
-    
+
 
   </script>
   <!--Navbar Starts-->
@@ -205,53 +214,59 @@ $(".exhAdd").click(function () {
                     <h4 class="panel-title">
                       <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
                         aria-expanded="true" aria-controls="collapseOne">
-                        EVENT INFORMATION 
+                        EVENT INFORMATION
                       </a>
                     </h4>
                   </div>
                   <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-                   
+
                     <div class="panel-body">
-                      <div class="mobilePreview"> 
-                        <i class="fa fa-mobile float-right mobPreview"></i><figure>
+                      <div class="mobilePreview">
+                        <i class="fa fa-mobile float-right mobPreview"></i>
+                        <figure>
                           <img src="./img/Home_web.png" width="400" height="300" alt="photo">
-                          </figure>
-                        
-                         </div>
+                        </figure>
+
+                      </div>
                       <!-- <div class ="row"> 
                         <div class="col-sm-8 ">  -->
-                      <label for="logo"><b>Upload logo</b></label>&nbsp;&nbsp;&nbsp;<span class="numberCircle">1</span><br/>
+                      <label for="logo"><b>Upload logo</b></label>&nbsp;&nbsp;&nbsp;<span
+                        class="numberCircle">1</span><br />
                       <div class="col-sm-2 text-center imgUp" style="margin: 1rem;">
                         <div class="imagePreview"></div>
-                    <label class="btn btn-primary">
-                      Upload<input type="file" class="uploadFile img" value="Upload Photo" style="width: 0px;height: 0px;overflow: hidden;">
-                            </label>
+                        <label class="btn btn-primary">
+                          Upload<input type="file" id="eventLogo" class="uploadFile img" value="Upload Photo"
+                            style="width: 0px;height: 0px;overflow: hidden;">
+                        </label>
                       </div><!-- col-2 -->
 
-                      <label for="event"><b>Name of Event</b></label> 
-                      <input type="text" placeholder="Enter Event Name" name="event" required>
+                      <label for="event"><b>Name of Event</b></label>
+                      <input type="text" id="eventName" placeholder="Enter Event Name" name="event" required>
 
-                      <label for="subtitle"><b>SubTitle</b></label>&nbsp;&nbsp;&nbsp;<span class="numberCircle">2</span><br/>
-                      <input type="text" placeholder="Enter SubTitle" name="subtitle" required>
+                      <label for="subtitle"><b>SubTitle</b></label>&nbsp;&nbsp;&nbsp;<span
+                        class="numberCircle">2</span><br />
+                      <input type="text" id="subTitle" placeholder="Enter SubTitle" name="subtitle" required>
 
-                      <label for="date"><b>Date</b></label> &nbsp;&nbsp;&nbsp;<span class="numberCircle">3</span><br/>
-                      <input type="date" placeholder="Enter Date" name="date" required>
-                      <label for="location"><b>Location</b></label> &nbsp;&nbsp;&nbsp;<span class="numberCircle">4</span><br/>
-                      <input type="text" placeholder="Enter Location" name="location" required>
+                      <label for="date"><b>Date</b></label> &nbsp;&nbsp;&nbsp;<span class="numberCircle">3</span><br />
+                      <input type="date" id="date" placeholder="Enter Date" name="date" required>
+                      <label for="location"><b>Location</b></label> &nbsp;&nbsp;&nbsp;<span
+                        class="numberCircle">4</span><br />
+                      <input type="text" id="location" placeholder="Enter Location" name="location" required>
 
-                      <label for="timeslot"><b>Select a time slot:</b></label>&nbsp;&nbsp;&nbsp;<span class="numberCircle">5</span><br/><br />
-                      <input type="time" id="appt" name="appt"> <label for="appt">to</label> <input type="time"
-                        id="appt" name="appt"><br />
+                      <label for="timeslot"><b>Select a time slot:</b></label>&nbsp;&nbsp;&nbsp;<span
+                        class="numberCircle">5</span><br /><br />
+                      <input type="time" id="startTime" name="appt"> <label for="appt">to</label> <input type="time"
+                        id="endTime" name="appt"><br />
 
                       <label for="desc"><b>Description</b></label>
-                      <textarea id="bio" placeholder="Type Description here!" rows="4" cols="50"></textarea>
+                      <textarea id="desc" placeholder="Type Description here!" rows="4" cols="50"></textarea>
 
-                     <!-- </div> 
+                      <!-- </div> 
                      
                 </div>  -->
-                      
-                      
-                     
+
+
+
                     </div>
                   </div>
                 </div>
@@ -266,271 +281,276 @@ $(".exhAdd").click(function () {
                   </div>
                   <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
                     <div class="panel-body">
-                      <div class="mobilePreview"> 
-                        <i class="fa fa-mobile float-right mobPreview"></i><figure>
+                      <div class="mobilePreview">
+                        <i class="fa fa-mobile float-right mobPreview"></i>
+                        <figure>
                           <img src="./img/Speaker_web.png" width="400" height="300" alt="photo">
-                          </figure>
-                        
-                         </div>
+                        </figure>
+
+                      </div>
+
+                      
                       <div class="row">
 
                         <div class="col-md-3 bg-mattBlackLight" style="margin: 1rem;"><i class="fa fa-times del"></i>
-                        <div class="avatar-upload">
-                          <div class="avatar-edit">
-                            <input type="file" id="imageUpload" accept=".png, .jpg, .jpeg" />
-                            <label for="imageUpload"></label>
-                          </div>
-                          <div class="avatar-preview">
-                            <div id="imagePreview" style="background-image: url(http://i.pravatar.cc/500?img=7);">
+                          <div class="avatar-upload">
+                            <div class="avatar-edit">
+                              <input type="file" id="imageUpload" accept=".png, .jpg, .jpeg" />
+                              <label for="imageUpload"></label>
+                            </div>
+                            <div class="avatar-preview">
+                              <div id="imagePreview" style="background-image: url(http://i.pravatar.cc/500?img=7);">
+                              </div>
                             </div>
                           </div>
-                        </div>
-                        <input type="checkbox" id="keySpeaker" name="keySpeaker" value="Key Speaker"
-                            checked="checked">
+                          <input type="checkbox" id="keySpeaker" name="keySpeaker" value="Key Speaker">
 
-                          <label for="keySpeaker">Key Speaker</label><br/>
-                        <label class="text-mattBlackDark" for="event"><b>Speaker Name</b></label>
-                        <input type="text" placeholder="Enter Speaker Name" name="speaker" required>
-    
-    
-                        <label class="text-mattBlackDark" for="title"><b>Title Name</b></label>
-                        <input type="text" placeholder="Enter Title of speaker" name="title" required>
-    
-                        <label class="text-mattBlackDark" for="comapany"><b>Comapany Name</b></label>
-                        <input type="text" placeholder="Enter Company name of speaker" name="company" required>
-          
-                        <label class="text-mattBlackDark" for="link"><b>Web Link</b></label>
-                        <input type="text" placeholder="Copy url here" name="link" required>
-    
+                          <label for="keySpeaker">Key Speaker</label><br />
+                          <label class="text-mattBlackDark" for="event"><b>Speaker Name</b></label>
+                          <input type="text" id="name" placeholder="Enter Speaker Name" name="speaker" required>
 
-                          
+
+                          <label class="text-mattBlackDark" for="title"><b>Title Name</b></label>
+                          <input type="text" id="title" placeholder="Enter Title of speaker" name="title" required>
+
+                          <label class="text-mattBlackDark" for="company"><b>Company Name</b></label>
+                          <input type="text" id="company" placeholder="Enter Company name of speaker" name="company"
+                            required>
+
+                          <label class="text-mattBlackDark" for="link"><b>Web Link</b></label>
+                          <input type="text" id="link" placeholder="Copy url here" name="link" required>
+
+
+
                         </div><i class="fa fa-plus float-right imgAdd"></i>
                       </div>
-                        
-                      </div>
 
                     </div>
-                  </div>
-                </div>
-                <div class="panel panel-default">
-                  <div class="panel-heading" role="tab" id="headingThree">
-                    <h4 class="panel-title">
-                      <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
-                        href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                        SCHEDULE INFORMATION 
-                         
-                      </a>
-                    </h4>
-                  </div>
-                  <div id="collapseThree" class="panel-collapse collapse" role="tabpanel"
-                    aria-labelledby="headingThree">
-                    <div class="panel-body">
-                      <div class="mobilePreview"> 
-                        <i class="fa fa-mobile float-right mobPreview"></i><figure>
-                          <img src="http://lorempixel.com/400/300/" width="400" height="300" alt="photo">
-                          </figure>
-                        
-                         </div>
-                      <div class="table-responsive col-md-10">
-                        <table class="table table-bordered table-striped table-hover table-condensed  text-center"
-                          id="DyanmicTable">
-                          <thead>
-                            <tr>
-                              <th class="text-center">
-                                Schedule Name
-                              </th>
-                              <th class="text-center">
-                                Time
-                              </th>
-                              <th class="text-center">
-                                Speaker Name
-                              </th>
-                              <th class="text-center">
-                                Speaker Title
-                              </th>
-                              <th class="text-center">
-                                Room Number
-                              </th>
-                              <th class="text-center">
-                                More Info Link
-                              </th>
-                              <th class="text-center">
-                                <button id="addNewRow" class="btn btn-info badge-pill btn-sm">Add New
-                                  Row</button>
-                              </th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <td>
-                                Opening Ceremony
-                              </td>
-                              <td>
-                                http://john-m.com
-                              </td>
-                              <td>
-                                Tim
-                              </td>
-                              <td>
-
-                              </td>
-                              <td>
-                                N 201
-                              </td>
-                              <td>
-                               www.lklkl.com
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                Ariana Smith
-                              </td>
-                              <td>
-                                https://araiana-smith.com
-                              </td>
-                              <td>
-                                1234567890
-                              </td>
-                              <td>
-                                
-                              </td>
-                              <td>
-                                1234567890
-                              </td>
-                              <td>
-                                www.lklkl.com
-                               </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <!--end table-responsive col-md-10 div-->
-                      <div class="plan-upload">
-                        <span id="filename">Select Floor Plan</span>
-                        <label for="file-upload">Browse<input type="file" id="file-upload"></label>
-                      </div>
-                      <input type="text" placeholder="Registration Link" name="registration" required>
-                      <input type="text" placeholder="Tradeshow Link" name="tradeshow" required>
-                    </div>
-                    <!--end panel-body-->
-                  </div>
-                  <!--end collapseThree-->
-                </div>
-                <div class="panel panel-default">
-                  <div class="panel-heading" role="tab" id="headingFour">
-                    <h4 class="panel-title">
-                      <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
-                        href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                        EXHIBITOR INFORMATION
-                      </a>
-                    </h4>
-                  </div>
-                  <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
-                    <div class="panel-body">
-                     
-                      <div class="row">
-                        <div class="w-25 p-3 imgUp"><i class="fa fa-times exhdel"></i>
-                          <div class="exhibitorPreview"></div>
-                          <label class="btn btn-danger">
-                            <i class="fa fa-upload" style="font-size:20px"></i><input type="file" class="uploadFile img"
-                              value="Upload Photo" style="width: 0px;height: 0px;overflow: hidden;">
-                          </label>
-                          <input type="text" placeholder="Enter Exhibitor Name" name="exhibitor" required>
-                        <input type="text" placeholder="Enter WebLink URL" name="weblink" required>
-                        </div><!-- col-2 -->
-                        <i class="fa fa-plus float-right exhAdd"></i>
-
-                      </div><!-- row -->
-                      <input type="text" placeholder="Exhibitor Link" name="exhibitor" required>
-                      <input type="text" placeholder="Show Your Brand Link" name="exhibitor brand" required>
-                    </div>  
-                    
-                  </div>
-                </div>
-                <div class="panel panel-default">
-                  <div class="panel-heading" role="tab" id="headingFive">
-                    <h4 class="panel-title">
-                      <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
-                        href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                        TICKET INFORMATION
-                      </a>
-                    </h4>
-                  </div>
-                  <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
-                    <div class="panel-body">
-                     
-                      <div class="row">
-                        <div class="w-25 p-3 imgUp"><i class="fa fa-times tickdel"></i>
-                          <div class="ticketPreview"></div>
-                          <label class="btn btn-danger">
-                            <i class="fa fa-upload" style="font-size:20px"></i><input type="file" class="uploadFile img"
-                              value="Upload Photo" style="width: 0px;height: 0px;overflow: hidden;">
-                          </label>
-                          <input type="text" placeholder="Enter Ticket Amount" name="amount" required>
-                        <input type="text" placeholder="Enter Ticket Desc" name="ticketDesc" required>
-                        </div><!-- col-2 -->
-                        <i class="fa fa-plus float-right tickAdd"></i>
-
-                      </div><!-- row -->
-                    </div>  
-                    
-                  </div>
-                </div>
-                <buttons class="btn btn-secondary badge-pill btn-lg btn-block">SUBMIT</buttons>
-              </div><!--col-sm-12 my-2 ends-->
-              
-              
-            </div>
-            <!--Modal starts-->
-            <!-- Modal -->
-            <div id="myModal" class="modal fade" role="dialog">
-              <div class="modal-dialog" role="document">
-
-                <!-- Modal content-->
-                <div class="modal-content bg-mattGray">
-                  <div class="modal-header">
-
-                    <h4 class="modal-title text-mattBlackDark">Speaker Information</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  </div>
-                  <div class="modal-body">
-                    <div class="avatar-upload">
-                      <div class="avatar-edit">
-                        <input type="file" id="imageUpload" accept=".png, .jpg, .jpeg" />
-                        <label for="imageUpload"></label>
-                      </div>
-                      <div class="avatar-preview">
-                        <div id="imagePreview" style="background-image: url(http://i.pravatar.cc/500?img=7);">
-                        </div>
-                      </div>
-                    </div>
-
-                    <label class="text-mattBlackDark" for="event"><b>Speaker Name</b></label>
-                    <input type="text" placeholder="Enter Speaker Name" name="speaker" required>
-
-
-                    <label class="text-mattBlackDark" for="title"><b>Title Name</b></label>
-                    <input type="text" placeholder="Enter Title of speaker" name="title" required>
-
-                    <label class="text-mattBlackDark" for="comapany"><b>Comapany Name</b></label>
-                    <input type="text" placeholder="Enter Company name of speaker" name="company" required>
-                    <label class="text-mattBlackDark" for="bio"><b>Bio</b></label>
-                    <textarea id="bio" placeholder="Type bio here!" rows="4" cols="50"></textarea>
-                    <label class="text-mattBlackDark" for="link"><b>Web Link</b></label>
-                    <input type="text" placeholder="Copy url here" name="link" required>
 
                   </div>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Submit</button>
                 </div>
               </div>
-              <!--Modal Ends-->
+              <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingThree">
+                  <h4 class="panel-title">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
+                      href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                      SCHEDULE INFORMATION
+
+                    </a>
+                  </h4>
+                </div>
+                <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                  <div class="panel-body">
+                    <div class="mobilePreview">
+                      <i class="fa fa-mobile float-right mobPreview"></i>
+                      <figure>
+                        <img src="http://lorempixel.com/400/300/" width="400" height="300" alt="photo">
+                      </figure>
+
+                    </div>
+                    <div class="table-responsive col-md-10">
+                      <table class="table table-bordered table-striped table-hover table-condensed  text-center"
+                        id="DyanmicTable">
+                        <thead>
+                          <tr>
+                            <th class="text-center">
+                              Schedule Name
+                            </th>
+                            <th class="text-center">
+                              Time
+                            </th>
+                            <th class="text-center">
+                              Speaker Name
+                            </th>
+                            <th class="text-center">
+                              Speaker Title
+                            </th>
+                            <th class="text-center">
+                              Room Number
+                            </th>
+                            <th class="text-center">
+                              More Info Link
+                            </th>
+                            <th class="text-center">
+                              <button id="addNewRow" class="btn btn-info badge-pill btn-sm">Add New
+                                Row</button>
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>
+                              Opening Ceremony
+                            </td>
+                            <td>
+                              http://john-m.com
+                            </td>
+                            <td>
+                              Tim
+                            </td>
+                            <td>
+
+                            </td>
+                            <td>
+                              N 201
+                            </td>
+                            <td>
+                              www.lklkl.com
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              Ariana Smith
+                            </td>
+                            <td>
+                              https://araiana-smith.com
+                            </td>
+                            <td>
+                              1234567890
+                            </td>
+                            <td>
+
+                            </td>
+                            <td>
+                              1234567890
+                            </td>
+                            <td>
+                              www.lklkl.com
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <!--end table-responsive col-md-10 div-->
+                    <div class="plan-upload">
+                      <span id="filename">Select Floor Plan</span>
+                      <label for="file-upload">Browse<input type="file" id="file-upload"></label>
+                    </div>
+                    <input type="text" placeholder="Registration Link" name="registration" required>
+                    <input type="text" placeholder="Tradeshow Link" name="tradeshow" required>
+                  </div>
+                  <!--end panel-body-->
+                </div>
+                <!--end collapseThree-->
+              </div>
+              <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingFour">
+                  <h4 class="panel-title">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
+                      href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                      EXHIBITOR INFORMATION
+                    </a>
+                  </h4>
+                </div>
+                <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+                  <div class="panel-body">
+
+                    <div class="row">
+                      <div class="w-25 p-3 imgUp"><i class="fa fa-times exhdel"></i>
+                        <div class="exhibitorPreview"></div>
+                        <label class="btn btn-danger">
+                          <i class="fa fa-upload" style="font-size:20px"></i><input type="file" class="uploadFile img"
+                            value="Upload Photo" style="width: 0px;height: 0px;overflow: hidden;">
+                        </label>
+                        <input type="text" placeholder="Enter Exhibitor Name" name="exhibitor" required>
+                        <input type="text" placeholder="Enter WebLink URL" name="weblink" required>
+                      </div><!-- col-2 -->
+                      <i class="fa fa-plus float-right exhAdd"></i>
+
+                    </div><!-- row -->
+                    <input type="text" placeholder="Exhibitor Link" name="exhibitor" required>
+                    <input type="text" placeholder="Show Your Brand Link" name="exhibitor brand" required>
+                  </div>
+
+                </div>
+              </div>
+              <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingFive">
+                  <h4 class="panel-title">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
+                      href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                      TICKET INFORMATION
+                    </a>
+                  </h4>
+                </div>
+                <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
+                  <div class="panel-body">
+
+                    <div class="row">
+                      <div class="w-25 p-3 imgUp"><i class="fa fa-times tickdel"></i>
+                        <div class="ticketPreview"></div>
+                        <label class="btn btn-danger">
+                          <i class="fa fa-upload" style="font-size:20px"></i><input type="file" class="uploadFile img"
+                            value="Upload Photo" style="width: 0px;height: 0px;overflow: hidden;">
+                        </label>
+                        <input type="text" placeholder="Enter Ticket Amount" name="amount" required>
+                        <input type="text" placeholder="Enter Ticket Desc" name="ticketDesc" required>
+                      </div><!-- col-2 -->
+                      <i class="fa fa-plus float-right tickAdd"></i>
+
+                    </div><!-- row -->
+                  </div>
+
+                </div>
+              </div>
+              <buttons class="btn btn-secondary badge-pill btn-lg btn-block" onclick="addEvent()">SUBMIT</buttons>
             </div>
-          
-          
-          
-          </div><!--container-fluid ends-->
+            <!--col-sm-12 my-2 ends-->
+
+
+          </div>
+          <!--Modal starts-->
+          <!-- Modal -->
+          <div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog" role="document">
+
+              <!-- Modal content-->
+              <div class="modal-content bg-mattGray">
+                <div class="modal-header">
+
+                  <h4 class="modal-title text-mattBlackDark">Speaker Information</h4>
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                  <div class="avatar-upload">
+                    <div class="avatar-edit">
+                      <input type="file" id="imageUpload" accept=".png, .jpg, .jpeg" />
+                      <label for="imageUpload"></label>
+                    </div>
+                    <div class="avatar-preview">
+                      <div id="imagePreview" style="background-image: url(http://i.pravatar.cc/500?img=7);">
+                      </div>
+                    </div>
+                  </div>
+
+                  <label class="text-mattBlackDark" for="event"><b>Speaker Name</b></label>
+                  <input type="text" placeholder="Enter Speaker Name" name="speaker" required>
+
+
+                  <label class="text-mattBlackDark" for="title"><b>Title Name</b></label>
+                  <input type="text" placeholder="Enter Title of speaker" name="title" required>
+
+                  <label class="text-mattBlackDark" for="comapany"><b>Comapany Name</b></label>
+                  <input type="text" placeholder="Enter Company name of speaker" name="company" required>
+                  <label class="text-mattBlackDark" for="bio"><b>Bio</b></label>
+                  <textarea id="bio" placeholder="Type bio here!" rows="4" cols="50"></textarea>
+                  <label class="text-mattBlackDark" for="link"><b>Web Link</b></label>
+                  <input type="text" placeholder="Copy url here" name="link" required>
+
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Submit</button>
+              </div>
+            </div>
+            <!--Modal Ends-->
+          </div>
+
+
+
+        </div>
+        <!--container-fluid ends-->
       </main>
     </div>
     <!--Main content ends-->
@@ -541,7 +561,7 @@ $(".exhAdd").click(function () {
 
 
   </script>
-  
+
 
   <script src="js/script.js"></script>
   <script src="js/jquery.min.js"></script>

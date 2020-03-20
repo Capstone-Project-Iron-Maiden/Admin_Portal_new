@@ -28,9 +28,9 @@
       firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
           var email = user.email;
-          alert("Active User " + email);
+          console.log("Active User " + email);
         } else {
-          alert("No user!")
+          console.log("No user!")
         }
       });
     </script>
@@ -153,15 +153,6 @@
                             console.log(imageUrl)
                             var eachinsert = "<div class='col-md-4 my-3'><div class='event-existing'><a href='eventRegistration.html'><img src='" + logo + "' style='width:400px;height:300px;'></a><div class='desc'>" + name + "</div></div></div>"
                             total = total + eachinsert
-        
-                            console.log(name)
-                            console.log(desc)
-                            console.log(logo)
-                            console.log(date)
-                            console.log(location)
-                            console.log(floorplan)
-                            console.log(subTitle)
-                            console.log(time)
                         }
         
         
