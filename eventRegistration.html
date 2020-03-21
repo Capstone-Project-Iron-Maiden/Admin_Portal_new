@@ -39,9 +39,30 @@
     $('.panel-collapse').on('hide.bs.collapse', function () {
       $(this).siblings('.panel-heading').removeClass('active');
     });
+
+
     $(document).ready(function () {
 
-     
+      // Event Registration logo preview
+      $(function () {
+      $(document).on("change", ".uploadFile", function () {
+        var uploadFile = $(this);
+        var files = !!this.files ? this.files : [];
+        if (!files.length || !window.FileReader) return; // no file selected, or no FileReader support
+
+        if (/^image/.test(files[0].type)) { // only image file
+          var reader = new FileReader(); // instance of the FileReader
+          reader.readAsDataURL(files[0]); // read the local file
+
+          reader.onloadend = function () { // set image data as background of div
+            //alert(uploadFile.closest(".upimage").find('.imagePreview').length);
+            uploadFile.closest(".imgUp").find('.imagePreview').before('</label><i class="fa fa-times del"></i>').css("background-image", "url(" + this.result + ")");
+          }
+        }
+
+      });
+    });
+    //  Speaker Image preview code
       $(function () {
         $(document).on("change", ".uploadFile", function () {
           var uploadFile = $(this);
@@ -61,7 +82,7 @@
         });
       });
 
-
+//add new speaker
 
       $(".imgAdd").click(function () {
         $(this).closest(".row").find('.imgAdd').before('<div class="col-md-3 bg-mattBlackLight imgUp" style="margin: 1rem;"><i class="fa fa-times del"></i>' +
@@ -90,10 +111,12 @@
 
           '</div>');
       });
+      //delete new speaker
       $(document).on("click", "i.del", function () {
         $(this).parent().remove();
       });
 
+      // Exhibitor logo preview
       $(function () {
         $(document).on("change", ".uploadFile", function () {
           var uploadFile = $(this);
