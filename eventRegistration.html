@@ -40,21 +40,40 @@
       $(this).siblings('.panel-heading').removeClass('active');
     });
     $(document).ready(function () {
-      $(".imgAdd").click(function () {
-        $(this).closest(".row").find('.imgAdd').before('<div class="col-md-3 bg-mattBlackLight" style="margin: 1rem;"><i class="fa fa-times del"></i>' +
-          '<div class="avatar-upload">' +
-          '<div class="avatar-edit">' +
-          '<input type="file" id="imageUpload" accept=".png, .jpg, .jpeg" />' +
-          '<label for="imageUpload"></label>' +
-          '</div>' +
-          '<div class="avatar-preview">' +
-          '<div id="imagePreview" style="background-image: url(http://i.pravatar.cc/500?img=7);">' +
-          '</div>' +
-          '</div>' +
-          '</div>' +
-          '<input type="checkbox" id="keySpeaker" name="keySpeaker" value="Key Speaker">' +
 
-          '<label for="keySpeaker">Key Speaker</label><br/>' +
+     
+      $(function () {
+        $(document).on("change", ".uploadFile", function () {
+          var uploadFile = $(this);
+          var files = !!this.files ? this.files : [];
+          if (!files.length || !window.FileReader) return; // no file selected, or no FileReader support
+
+          if (/^image/.test(files[0].type)) { // only image file
+            var reader = new FileReader(); // instance of the FileReader
+            reader.readAsDataURL(files[0]); // read the local file
+
+            reader.onloadend = function () { // set image data as background of div
+              //alert(uploadFile.closest(".upimage").find('.imagePreview').length);
+              uploadFile.closest(".imgUp").find('.speakerPreview').before('</label>').css({ "background-image": "url(" + this.result + ")", "background-repeat": "no-repeat", "background-size": "contain" });
+            }
+          }
+
+        });
+      });
+
+
+
+      $(".imgAdd").click(function () {
+        $(this).closest(".row").find('.imgAdd').before('<div class="col-md-3 bg-mattBlackLight imgUp" style="margin: 1rem;"><i class="fa fa-times del"></i>' +
+
+          '<div class="speakerPreview"></div>'+
+                        '<label class="imageUpload">'+
+                          '<i class="fa fa-upload" style="font-size:20px"></i><input type="file" class="uploadFile img"'+
+                           ' value="Upload Photo" style="width: 0px;height: 0px;overflow: hidden;">'+
+                        '</label>' +
+          '<label class="keySpeaker">Key Speaker' +
+           
+          ' <input type="checkbox"name="keySpeaker" value="Key Speaker"> <span class="checkmark"></span> </label><br />' +
           '<label class="text-mattBlackDark" for="event"><b>Speaker Name</b></label>' +
           '<input type="text" id="name" placeholder="Enter Speaker Name" name="speaker" required>' +
 
@@ -87,7 +106,7 @@
 
             reader.onloadend = function () { // set image data as background of div
               //alert(uploadFile.closest(".upimage").find('.imagePreview').length);
-              uploadFile.closest(".imgUp").find('.imagePreview').before('</label>').css("background-image", "url(" + this.result + ")");
+              uploadFile.closest(".imgUp").find('.exhibitorPreview').before('</label>').css({ "background-image": "url(" + this.result + ")", "background-repeat": "no-repeat", "background-size": "contain" });
             }
           }
 
@@ -131,6 +150,25 @@
 
       $(document).on("click", "i.tickdel", function () {
         $(this).parent().remove();
+      });
+
+      $(function () {
+        $(document).on("change", ".uploadFile", function () {
+          var uploadFile = $(this);
+          var files = !!this.files ? this.files : [];
+          if (!files.length || !window.FileReader) return; // no file selected, or no FileReader support
+
+          if (/^image/.test(files[0].type)) { // only image file
+            var reader = new FileReader(); // instance of the FileReader
+            reader.readAsDataURL(files[0]); // read the local file
+
+            reader.onloadend = function () { // set image data as background of div
+              //alert(uploadFile.closest(".upimage").find('.imagePreview').length);
+              uploadFile.closest(".imgUp").find('.ticketPreview').before('</label>').css({ "background-image": "url(" + this.result + ")", "background-repeat": "no-repeat", "background-size": "contain" });
+            }
+          }
+
+        });
       });
 
     });
@@ -221,17 +259,10 @@
                   <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
 
                     <div class="panel-body">
-                      <div class="mobilePreview">
-                        <i class="fa fa-mobile float-right mobPreview"></i>
-                        <figure>
-                          <img src="./img/Home_web.png" width="400" height="300" alt="photo">
-                        </figure>
 
-                      </div>
                       <!-- <div class ="row"> 
                         <div class="col-sm-8 ">  -->
-                      <label for="logo"><b>Upload logo</b></label>&nbsp;&nbsp;&nbsp;<span
-                        class="numberCircle">1</span><br />
+                      <label for="logo"><b>Upload logo</b></label>
                       <div class="col-sm-2 text-center imgUp" style="margin: 1rem;">
                         <div class="imagePreview"></div>
                         <label class="btn btn-primary">
@@ -243,18 +274,15 @@
                       <label for="event"><b>Name of Event</b></label>
                       <input type="text" id="eventName" placeholder="Enter Event Name" name="event" required>
 
-                      <label for="subtitle"><b>SubTitle</b></label>&nbsp;&nbsp;&nbsp;<span
-                        class="numberCircle">2</span><br />
+                      <label for="subtitle"><b>SubTitle</b></label>
                       <input type="text" id="subTitle" placeholder="Enter SubTitle" name="subtitle" required>
 
-                      <label for="date"><b>Date</b></label> &nbsp;&nbsp;&nbsp;<span class="numberCircle">3</span><br />
+                      <label for="date"><b>Date</b></label>
                       <input type="date" id="date" placeholder="Enter Date" name="date" required>
-                      <label for="location"><b>Location</b></label> &nbsp;&nbsp;&nbsp;<span
-                        class="numberCircle">4</span><br />
+                      <label for="location"><b>Location</b></label>
                       <input type="text" id="location" placeholder="Enter Location" name="location" required>
 
-                      <label for="timeslot"><b>Select a time slot:</b></label>&nbsp;&nbsp;&nbsp;<span
-                        class="numberCircle">5</span><br /><br />
+                      <label for="timeslot"><b>Select a time slot:</b></label>
                       <input type="time" id="startTime" name="appt"> <label for="appt">to</label> <input type="time"
                         id="endTime" name="appt"><br />
 
@@ -281,44 +309,41 @@
                   </div>
                   <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
                     <div class="panel-body">
-                      <div class="mobilePreview">
-                        <i class="fa fa-mobile float-right mobPreview"></i>
-                        <figure>
-                          <img src="./img/Speaker_web.png" width="400" height="300" alt="photo">
-                        </figure>
 
-                      </div>
 
-                      
+
                       <div class="row">
 
-                        <div class="col-md-3 bg-mattBlackLight" style="margin: 1rem;"><i class="fa fa-times del"></i>
-                          <div class="avatar-upload">
-                            <div class="avatar-edit">
-                              <input type="file" id="imageUpload" accept=".png, .jpg, .jpeg" />
-                              <label for="imageUpload"></label>
-                            </div>
-                            <div class="avatar-preview">
-                              <div id="imagePreview" style="background-image: url(http://i.pravatar.cc/500?img=7);">
-                              </div>
-                            </div>
-                          </div>
-                          <input type="checkbox" id="keySpeaker" name="keySpeaker" value="Key Speaker">
+                        <div class="col-md-3 bg-mattBlackLight imgUp" style="margin: 1rem;"><i
+                            class="fa fa-times del"></i>
 
-                          <label for="keySpeaker">Key Speaker</label><br />
+
+
+                            <div class="speakerPreview"></div>
+                        <label class="imageUpload">
+                          <i class="fa fa-upload" style="font-size:20px"></i><input type="file" class="uploadFile img"
+                            value="Upload Photo" style="width: 0px;height: 0px;overflow: hidden;">
+                        </label>
+
+                         
+
+                          <label class="keySpeaker">Key Speaker
+                            <input type="checkbox"name="keySpeaker" value="Key Speaker">
+                            <span class="checkmark"></span>
+                          </label><br />
                           <label class="text-mattBlackDark" for="event"><b>Speaker Name</b></label>
-                          <input type="text" id="name" placeholder="Enter Speaker Name" name="speaker" required>
+                          <input type="text"  placeholder="Enter Speaker Name" name="speaker" required>
 
 
                           <label class="text-mattBlackDark" for="title"><b>Title Name</b></label>
-                          <input type="text" id="title" placeholder="Enter Title of speaker" name="title" required>
+                          <input type="text"placeholder="Enter Title of speaker" name="title" required>
 
                           <label class="text-mattBlackDark" for="company"><b>Company Name</b></label>
-                          <input type="text" id="company" placeholder="Enter Company name of speaker" name="company"
+                          <input type="text"  placeholder="Enter Company name of speaker" name="company"
                             required>
 
                           <label class="text-mattBlackDark" for="link"><b>Web Link</b></label>
-                          <input type="text" id="link" placeholder="Copy url here" name="link" required>
+                          <input type="text"  placeholder="Copy url here" name="link" required>
 
 
 
@@ -499,52 +524,6 @@
             <!--col-sm-12 my-2 ends-->
 
 
-          </div>
-          <!--Modal starts-->
-          <!-- Modal -->
-          <div id="myModal" class="modal fade" role="dialog">
-            <div class="modal-dialog" role="document">
-
-              <!-- Modal content-->
-              <div class="modal-content bg-mattGray">
-                <div class="modal-header">
-
-                  <h4 class="modal-title text-mattBlackDark">Speaker Information</h4>
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                <div class="modal-body">
-                  <div class="avatar-upload">
-                    <div class="avatar-edit">
-                      <input type="file" id="imageUpload" accept=".png, .jpg, .jpeg" />
-                      <label for="imageUpload"></label>
-                    </div>
-                    <div class="avatar-preview">
-                      <div id="imagePreview" style="background-image: url(http://i.pravatar.cc/500?img=7);">
-                      </div>
-                    </div>
-                  </div>
-
-                  <label class="text-mattBlackDark" for="event"><b>Speaker Name</b></label>
-                  <input type="text" placeholder="Enter Speaker Name" name="speaker" required>
-
-
-                  <label class="text-mattBlackDark" for="title"><b>Title Name</b></label>
-                  <input type="text" placeholder="Enter Title of speaker" name="title" required>
-
-                  <label class="text-mattBlackDark" for="comapany"><b>Comapany Name</b></label>
-                  <input type="text" placeholder="Enter Company name of speaker" name="company" required>
-                  <label class="text-mattBlackDark" for="bio"><b>Bio</b></label>
-                  <textarea id="bio" placeholder="Type bio here!" rows="4" cols="50"></textarea>
-                  <label class="text-mattBlackDark" for="link"><b>Web Link</b></label>
-                  <input type="text" placeholder="Copy url here" name="link" required>
-
-                </div>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Submit</button>
-              </div>
-            </div>
-            <!--Modal Ends-->
           </div>
 
 

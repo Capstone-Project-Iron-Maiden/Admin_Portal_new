@@ -202,26 +202,22 @@
     font-size: 15px;
   }
 
-
+/* 
   .avatar-upload {
     position: relative;
     max-width: 205px;
     margin-left: 2rem;
 
-  }
-
-  .avatar-upload .avatar-edit {
-    position: absolute;
-    z-index: 1;
-    top: 10px;
-  }
+  } */
   
-
-  .avatar-upload .avatar-edit input {
-    display: none;
-  }
-
-  .avatar-upload .avatar-edit input + label {
+  
+  
+  
+  
+  
+  
+  
+  .imageUpload {
     display: inline-block;
     width: 34px;
     height: 34px;
@@ -229,20 +225,12 @@
     border-radius: 100%;
     background: #FFFFFF;
     border: 1px solid transparent;
-    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
+    -webkit-box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
+            box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
     cursor: pointer;
     font-weight: normal;
+    -webkit-transition: all .2s ease-in-out;
     transition: all .2s ease-in-out;
-  }
-
-  .avatar-upload .avatar-edit input + label:hover {
-    background: #f1f1f1;
-    border-color: #d6d6d6;
-  }
-
-  .avatar-upload .avatar-edit input + label:after {
-    content: "\f040";
-    font-family: 'FontAwesome';
     color: #757575;
     position: absolute;
     top: 10px;
@@ -251,59 +239,94 @@
     text-align: center;
     margin: auto;
   }
-
-
-
-  .avatar-upload .avatar-preview {
+  
+  .imageUpload:hover {
+    background: #f1f1f1;
+    border-color: #d6d6d6;
+  }
+  
+ 
+  
+  .speakerPreview {
     width: 192px;
     height: 192px;
     position: relative;
+    top: 10px;
+    left: 0;
     border-radius: 100%;
-    margin: 1rem;
     border: 6px solid #F8F8F8;
-    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
-  }
-
-  .avatar-upload .avatar-preview > div  {
-    width: 100%;
-    height: 100%;
-    border-radius: 100%;
+    background-image: url(http://i.pravatar.cc/500?img=7);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-  }
-
-  input[type=checkbox]{
-    display: none;
+    -webkit-box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
+            box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
   }
   
-  input[type=checkbox]+ label::before{
-
-    content: "\2713";
-    border: 0.1em solid #000;
-    border-radius: 0.2em;
-    display: inline-block;
-    width: 1.5em;
-    height: 1.5em;
-    padding-left: 0.2em;
-    padding-bottom: 0.3em;
-    margin-right: 0.2em;
-    vertical-align: bottom;
-    color: transparent;
-    transition: .2s;
+ 
+  .keySpeaker {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-top: 2rem;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  .keySpeaker input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
   }
  
 
-  input[type=checkbox]:checked + label:active::before{
-    transform:scale(0);
+  .keySpeaker .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
   }
 
-  input[type=checkbox]:checked + label::before{
-    background-color:brown;
-    border-color: brown;
-    color: #fff;
-  }
-  
+  /* On mouse-over, add a grey background color */
+.keySpeaker:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+/* When the checkbox is checked, add a blue background */
+.keySpeaker input:checked ~ .checkmark {
+  background-color: brown;
+}
+/* Create the checkmark/indicator (hidden when not checked) */
+.keySpeaker .checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+/* Show the checkmark when checked */
+.keySpeaker input:checked ~ .checkmark:after {
+  display: block;
+}
+/* Style the checkmark/indicator */
+.keySpeaker .checkmark:after {
+  left: 6px;
+  top: 7px;
+  width: 8px;
+  height: 15px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
   .fa-edit {
     color: orangered;
   }
@@ -338,50 +361,7 @@
     overflow: hidden;
     background: #010a11;
   }
-  .numberCircle {
-    border-radius: 50%;
-    width: 36px;
-    height: 36px;
-    padding: 8px;
-
-    background: #fff;
-    border: 2px solid #666;
-    color: #666;
-    text-align: center;
-
-    font: 18px Arial, sans-serif;
-}
-
-
-.mobilePreview figure {
-  display: none;
-  position: absolute;
-  left: 50rem;
-  padding: 0;
-  margin: 0;
-  border: 1px solid black;
-  background: black;
-  border-radius: 1em;
-}
-
-.mobilePreview img {
-  display: block;
-  border-radius: 0.8em;
-  max-width: 100%;
-  height: 500px;
-}
-
-.mobilePreview:focus figure,
-.mobilePreview:hover figure {
-  z-index: 2;
-  display: block;
-
-}
-.mobilePreview:focus mobPreview,
-.mobilePreview:hover mobPreview {
-  background: red;
-}
-
+  
 
   /*# sourceMappingURL=style.css.map */
 
