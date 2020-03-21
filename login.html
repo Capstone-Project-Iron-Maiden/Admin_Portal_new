@@ -38,10 +38,10 @@
       firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
           var email = user.email;
-          alert("Active User " + email);
+          console.log("Active User " + email);
           location.replace("./dashboard.html");
         } else {
-          alert("No user!")
+          console.log("No user!")
         }
       });
     }
