@@ -36,12 +36,12 @@ $.fn.SetEditable = function (options) {
       onAddCol : function() {} // Called after adding a column
   };
   params = $.extend(defaults, options);
-  this.find('thead tr').append('<th name="buttons"></th>');  //encabezado vacío
+  this.find('thead tr').append('<th name="buttons"></th>');  //empty header
   this.find('tbody tr').append(colEdicHtml);
   var $tabedi = this;   //Read reference to the current table, to resolve "this" here.
   //Process "addButton" parameter
   if (params.$addButton != null) {
-      //Se proporcionó parámetro
+      //Parameter provided
       params.$addButton.click(function() {
           rowAddNew($tabedi.attr("id"));
       });
@@ -63,11 +63,11 @@ $.fn.SetEditable = function (options) {
   }
 };
 function IterarCamposEdit($cols, tarea) {
-//Itera por los campos editables de una fila
+//Iterates through the editable fields in a row
   var n = 0;
   $cols.each(function() {
       n++;
-      if ($(this).attr('name')=='buttons') return;  //excluye columna de botones
+      if ($(this).attr('name')=='buttons') return;  //exclude button column
       if (!EsEditable(n-1)) return;   //noe s campo editable
       tarea($(this));
   });
@@ -109,28 +109,29 @@ function ModoEdicion($row) {
   }
 }
 function rowAcep(but) {
-//Acepta los cambios de la edición
-  var $row = $(but).parents('tr');  //accede a la fila
-  var $cols = $row.find('td');  //lee campos
-  if (!ModoEdicion($row)) return;  //Ya está en edición
-  //Está en edición. Hay que finalizar la edición
-  IterarCamposEdit($cols, function($td) {  //itera por la columnas
-    var cont = $td.find('input').val(); //lee contenido del input
-    $td.html(cont);  //fija contenido y elimina controles
+//Accept edit changes
+
+  var $row = $(but).parents('tr');  //access the row
+  var $cols = $row.find('td');  //read fields
+  if (!ModoEdicion($row)) return;  //It is already in edition
+  //It is in edition. We have to finish the edition
+  IterarCamposEdit($cols, function($td) {  //iterate through the columns
+    var cont = $td.find('input').val(); //read input content
+    $td.html(cont);  //pin content and remove controls
   });
   FijModoNormal(but);
   params.onEdit($row);
 }
 function rowCancel(but) {
-//Rechaza los cambios de la edición
-  var $row = $(but).parents('tr');  //accede a la fila
-  var $cols = $row.find('td');  //lee campos
-  if (!ModoEdicion($row)) return;  //Ya está en edición
-  //Está en edición. Hay que finalizar la edición
-  IterarCamposEdit($cols, function($td) {  //itera por la columnas
-      var cont = $td.find('div').html(); //lee contenido del div
-      $td.html(cont);  //fija contenido y elimina controles
-  });
+//Reject edits changes
+  var $row = $(but).parents('tr');  //access the row
+  var $cols = $row.find('td');  //read fields
+  if (!ModoEdicion($row)) return;  //It is already in edition
+  //It is in edition. We have to finish the edition
+  IterarCamposEdit($cols, function($td) {  //iterate through the columns
+      var cont = $td.find('div').html(); //read div content
+      $td.html(cont);  //pin content and remove controls
+    });
   FijModoNormal(but);
 }
 function rowEdit(but) {  //Inicia la edición de una fila
