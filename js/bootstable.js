@@ -139,11 +139,11 @@ function rowEdit(but) {  //Inicia la edición de una fila
   var $cols = $row.find('td');  //lee campos
   if (ModoEdicion($row)) return;  //Ya está en edición
   //Pone en modo de edición
-  IterarCamposEdit($cols, function($td) {  //itera por la columnas
-      var cont = $td.html(); //lee contenido
-      var div = '<div style="display: none;">' + cont + '</div>';  //guarda contenido
+  IterarCamposEdit($cols, function($td) {  //iterate through the columns
+      var cont = $td.html(); //read content
+      var div = '<div style="display: none;">' + cont + '</div>';  //save content
       var input = '<input class="form-control input-sm"  value="' + cont + '">';
-      $td.html(div + input);  //fija contenido
+      $td.html(div + input);  //fix content
   });
   FijModoEdit(but);
 }
