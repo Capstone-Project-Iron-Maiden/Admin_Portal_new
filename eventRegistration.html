@@ -45,24 +45,24 @@
 
       // Event Registration logo preview
       $(function () {
-      $(document).on("change", ".uploadFile", function () {
-        var uploadFile = $(this);
-        var files = !!this.files ? this.files : [];
-        if (!files.length || !window.FileReader) return; // no file selected, or no FileReader support
+        $(document).on("change", ".uploadFile", function () {
+          var uploadFile = $(this);
+          var files = !!this.files ? this.files : [];
+          if (!files.length || !window.FileReader) return; // no file selected, or no FileReader support
 
-        if (/^image/.test(files[0].type)) { // only image file
-          var reader = new FileReader(); // instance of the FileReader
-          reader.readAsDataURL(files[0]); // read the local file
+          if (/^image/.test(files[0].type)) { // only image file
+            var reader = new FileReader(); // instance of the FileReader
+            reader.readAsDataURL(files[0]); // read the local file
 
-          reader.onloadend = function () { // set image data as background of div
-            //alert(uploadFile.closest(".upimage").find('.imagePreview').length);
-            uploadFile.closest(".imgUp").find('.imagePreview').before('</label><i class="fa fa-times del"></i>').css("background-image", "url(" + this.result + ")");
+            reader.onloadend = function () { // set image data as background of div
+              //alert(uploadFile.closest(".upimage").find('.imagePreview').length);
+              uploadFile.closest(".imgUp").find('.imagePreview').before('</label><i class="fa fa-times del"></i>').css("background-image", "url(" + this.result + ")");
+            }
           }
-        }
 
+        });
       });
-    });
-    //  Speaker Image preview code
+      //  Speaker Image preview code
       $(function () {
         $(document).on("change", ".uploadFile", function () {
           var uploadFile = $(this);
@@ -82,18 +82,18 @@
         });
       });
 
-//add new speaker
+      //add new speaker
 
       $(".imgAdd").click(function () {
-        $(this).closest(".row").find('.imgAdd').before('<div class="col-md-3 bg-mattBlackLight imgUp" style="margin: 1rem;"><i class="fa fa-times del"></i>' +
+        $(this).closest(".row").find('.imgAdd').before('<div class="col-md-3 bg-mattBlackLight imgUp" name="speakers" style="margin: 1rem;"><i class="fa fa-times del"></i>' +
 
-          '<div class="speakerPreview"></div>'+
-                        '<label class="imageUpload">'+
-                          '<i class="fa fa-upload" style="font-size:20px"></i><input type="file" class="uploadFile img"'+
-                           ' value="Upload Photo" style="width: 0px;height: 0px;overflow: hidden;">'+
-                        '</label>' +
+          '<div class="speakerPreview"></div>' +
+          '<label class="imageUpload">' +
+          '<i class="fa fa-upload" style="font-size:20px"></i><input type="file" class="uploadFile img"' +
+          ' value="Upload Photo" style="width: 0px;height: 0px;overflow: hidden;">' +
+          '</label>' +
           '<label class="keySpeaker">Key Speaker' +
-           
+
           ' <input type="checkbox"name="keySpeaker" value="Key Speaker"> <span class="checkmark"></span> </label><br />' +
           '<label class="text-mattBlackDark" for="event"><b>Speaker Name</b></label>' +
           '<input type="text"  placeholder="Enter Speaker Name" name="speaker" required>' +
@@ -138,17 +138,16 @@
 
       // Add  and delete exhibitor image
       $(".exhAdd").click(function () {
-        $(this).closest(".row").find('.exhAdd').before('<div class="w-25 p-3 imgUp"><i class="fa fa-times exhdel"></i>' +
+        $(this).closest(".row").find('.exhAdd').before('<div class="w-25 p-3 imgUp" name="exhibitors"><i class="fa fa-times exhdel"></i>' +
           '<div class="exhibitorPreview"></div>' +
           '<label class="btn btn-danger">' +
           '<i class="fa fa-upload" style="font-size:20px"></i><input type="file" class="uploadFile img"' +
           'value="Upload Photo" style="width: 0px;height: 0px;overflow: hidden;">' +
           '</label>' +
-          '<label class="CheckCheckBox">Sponsor'+
-                          '<input type="checkbox"name="Sponsor" value="Sponsor">'+
-                          '<span class="checkmark"></span>'+
-                        '</label><br />'+
-          '<input type="text" placeholder="Enter Exhibitor Name" name="exhibitor" required>' +
+          '<label class="CheckCheckBox">Sponsor' +
+          '<input type="checkbox"name="Sponsor" value="Sponsor">' +
+          '<span class="checkmark"></span>' +
+          '</label><br />' +
           '<input type="text" placeholder="Enter WebLink URL" name="weblink" required>' +
           '</div><!-- col-2 -->');
       });
@@ -163,7 +162,7 @@
 
       // Add  and delete ticket image
       $(".tickAdd").click(function () {
-        $(this).closest(".row").find('.tickAdd').before('<div class="w-25 p-3 imgUp"><i class="fa fa-times tickdel"></i>' +
+        $(this).closest(".row").find('.tickAdd').before('<div class="w-25 p-3 imgUp" name="tickets"><i class="fa fa-times tickdel"></i>' +
           '<div class="ticketPreview"></div>' +
           '<label class="btn btn-danger">' +
           '<i class="fa fa-upload" style="font-size:20px"></i><input type="file" class="uploadFile img"' +
@@ -342,36 +341,35 @@
 
                       <div class="row">
 
-                        <div class="col-md-3 bg-mattBlackLight imgUp" style="margin: 1rem;"><i
+                        <div class="col-md-3 bg-mattBlackLight imgUp" name="speakers" style="margin: 1rem;"><i
                             class="fa fa-times del"></i>
 
 
 
-                            <div class="speakerPreview"></div>
-                        <label class="imageUpload">
-                          <i class="fa fa-upload" style="font-size:20px"></i><input type="file" class="uploadFile img"
-                            value="Upload Photo" style="width: 0px;height: 0px;overflow: hidden;"/>
-                        </label>
+                          <div class="speakerPreview"></div>
+                          <label class="imageUpload">
+                            <i class="fa fa-upload" style="font-size:20px"></i><input type="file" class="uploadFile img"
+                              value="Upload Photo" style="width: 0px;height: 0px;overflow: hidden;" />
+                          </label>
 
-                         
+
 
                           <label class="keySpeaker">Key Speaker
-                            <input type="checkbox"name="keySpeaker" value="Key Speaker"/>
+                            <input type="checkbox" name="keySpeaker" value="Key Speaker" />
                             <span class="checkmark"></span>
                           </label><br />
                           <label class="text-mattBlackDark" for="event"><b>Speaker Name</b></label>
-                          <input type="text"  placeholder="Enter Speaker Name" name="speaker" required/>
+                          <input type="text" placeholder="Enter Speaker Name" name="speaker" required />
 
 
                           <label class="text-mattBlackDark" for="title"><b>Title Name</b></label>
-                          <input type="text"placeholder="Enter Title of speaker" name="title" required/>
+                          <input type="text" placeholder="Enter Title of speaker" name="title" required />
 
                           <label class="text-mattBlackDark" for="company"><b>Company Name</b></label>
-                          <input type="text"  placeholder="Enter Company name of speaker" name="company"
-                            required/>
+                          <input type="text" placeholder="Enter Company name of speaker" name="company" required />
 
                           <label class="text-mattBlackDark" for="link"><b>Web Link</b></label>
-                          <input type="text"  placeholder="Copy url here" name="link" required/>
+                          <input type="text" placeholder="Copy url here" name="link" required />
 
 
 
@@ -382,209 +380,210 @@
 
                   </div>
                 </div>
-              <div class="panel panel-default">
-                <div class="panel-heading" role="tab" id="headingThree">
-                  <h4 class="panel-title">
-                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
-                      href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                      SCHEDULE INFORMATION
+                <div class="panel panel-default">
+                  <div class="panel-heading" role="tab" id="headingThree">
+                    <h4 class="panel-title">
+                      <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
+                        href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        SCHEDULE INFORMATION
 
-                    </a>
-                  </h4>
-                </div>
-                <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-                  <div class="panel-body">
-                   
-                    <div class="table-responsive col-md-10">
-                      <table class="table table-bordered table-striped table-hover table-condensed  text-center"
-                        id="DyanmicTable">
-                        <thead>
-                          <tr>
-                            <th class="text-center">
-                              Schedule Name
-                            </th>
-                            <th class="text-center">
-                              Start Time
-                            </th>
-                            <th class="text-center">
-                              End Time
-                            </th>
-                            <th class="text-center">
-                              Speaker Name & Title
-                            </th>
-                            <th class="text-center">
-                              Room Number
-                            </th>
-                            <th class="text-center">
-                              Learn More Link
-                            </th>
-                            <th class="text-center">
-                              Is this a networking event?(Y/N)
-                            </th>
-                            <th class="text-center">
-                              <button id="addNewRow" class="btn btn-info badge-pill btn-sm">Add New
-                                Row</button>
-                            </th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>
-                              Opening Ceremony
-                            </td>
-                            <td>
-                              http://john-m.com
-                            </td>
-                            <td>
-                              Tim
-                            </td>
-                            <td>
+                      </a>
+                    </h4>
+                  </div>
+                  <div id="collapseThree" class="panel-collapse collapse" role="tabpanel"
+                    aria-labelledby="headingThree">
+                    <div class="panel-body">
 
-                            </td>
-                            <td>
-                              N 201
-                            </td>
-                            <td>
-                              www.lklkl.com
-                            </td>
-                            <td>
-                              Y
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              Ariana Smith
-                            </td>
-                            <td>
-                              https://araiana-smith.com
-                            </td>
-                            <td>
-                              1234567890
-                            </td>
-                            <td>
+                      <div class="table-responsive col-md-10">
+                        <table class="table table-bordered table-striped table-hover table-condensed  text-center"
+                          id="DyanmicTable">
+                          <thead>
+                            <tr>
+                              <th class="text-center">
+                                Schedule Name
+                              </th>
+                              <th class="text-center">
+                                Start Time
+                              </th>
+                              <th class="text-center">
+                                End Time
+                              </th>
+                              <th class="text-center">
+                                Speaker Name & Title
+                              </th>
+                              <th class="text-center">
+                                Room Number
+                              </th>
+                              <th class="text-center">
+                                Learn More Link
+                              </th>
+                              <th class="text-center">
+                                Is this a networking event?(Y/N)
+                              </th>
+                              <th class="text-center">
+                                <button id="addNewRow" class="btn btn-info badge-pill btn-sm">Add New
+                                  Row</button>
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>
+                                Opening Ceremony
+                              </td>
+                              <td>
+                                http://john-m.com
+                              </td>
+                              <td>
+                                Tim
+                              </td>
+                              <td>
 
-                            </td>
-                            <td>
-                              1234567890
-                            </td>
-                            <td>
-                              www.lklkl.com
-                            </td>
-                            <td>
-                             Y
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
+                              </td>
+                              <td>
+                                N 201
+                              </td>
+                              <td>
+                                www.lklkl.com
+                              </td>
+                              <td>
+                                Y
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                Ariana Smith
+                              </td>
+                              <td>
+                                https://araiana-smith.com
+                              </td>
+                              <td>
+                                1234567890
+                              </td>
+                              <td>
+
+                              </td>
+                              <td>
+                                1234567890
+                              </td>
+                              <td>
+                                www.lklkl.com
+                              </td>
+                              <td>
+                                Y
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <!--end table-responsive col-md-10 div-->
+                      <div class="plan-upload">
+                        <span id="filename">Select Floor Plan</span>
+                        <label for="file-upload">Browse<input type="file" id="file-upload"></label>
+                      </div>
+                      <input type="text" id="registration" placeholder="Registration Link" name="registration" required>
+                      <input type="text" id="tradeshow" placeholder="Tradeshow Link" name="tradeshow" required>
                     </div>
-                    <!--end table-responsive col-md-10 div-->
-                    <div class="plan-upload">
-                      <span id="filename">Select Floor Plan</span>
-                      <label for="file-upload">Browse<input type="file" id="file-upload"></label>
+                    <!--end panel-body-->
+                  </div>
+                  <!--end collapseThree-->
+                </div>
+                <div class="panel panel-default">
+                  <div class="panel-heading" role="tab" id="headingFour">
+                    <h4 class="panel-title">
+                      <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
+                        href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                        EXHIBITOR INFORMATION
+                      </a>
+                    </h4>
+                  </div>
+                  <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+                    <div class="panel-body">
+
+                      <div class="row">
+                        <div class="w-25 p-3 imgUp" name="exhibitors"><i class="fa fa-times exhdel"></i>
+                          <div class="exhibitorPreview"></div>
+                          <label class="btn btn-danger">
+                            <i class="fa fa-upload" style="font-size:20px"></i><input type="file" class="uploadFile img"
+                              value="Upload Photo" style="width: 0px;height: 0px;overflow: hidden;" />
+                          </label>
+                          <label class="CheckCheckBox">Sponsor
+                            <input type="checkbox" name="Sponsor" value="Sponsor" />
+                            <span class="checkmark"></span>
+                          </label><br />
+                          <input type="text" placeholder="Enter WebLink URL" name="weblink" required />
+                        </div><!-- col-2 -->
+                        <i class="fa fa-plus float-right exhAdd"></i>
+
+                      </div><!-- row -->
+                      <input type="text" id="exhibitorLink" placeholder="Exhibitor Link" name="exhibitor" required />
+                      <input type="text" id="brandLink" placeholder="Show Your Brand Link" name="exhibitor brand"
+                        required />
                     </div>
-                    <input type="text" placeholder="Registration Link" name="registration" required>
-                    <input type="text" placeholder="Tradeshow Link" name="tradeshow" required>
-                  </div>
-                  <!--end panel-body-->
-                </div>
-                <!--end collapseThree-->
-              </div>
-              <div class="panel panel-default">
-                <div class="panel-heading" role="tab" id="headingFour">
-                  <h4 class="panel-title">
-                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
-                      href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                      EXHIBITOR INFORMATION
-                    </a>
-                  </h4>
-                </div>
-                <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
-                  <div class="panel-body">
-
-                    <div class="row">
-                      <div class="w-25 p-3 imgUp"><i class="fa fa-times exhdel"></i>
-                        <div class="exhibitorPreview"></div>
-                        <label class="btn btn-danger">
-                          <i class="fa fa-upload" style="font-size:20px"></i><input type="file" class="uploadFile img"
-                            value="Upload Photo" style="width: 0px;height: 0px;overflow: hidden;"/>
-                        </label>
-                        <label class="CheckCheckBox">Sponsor
-                          <input type="checkbox"name="Sponsor" value="Sponsor"/>
-                          <span class="checkmark"></span>
-                        </label><br />
-                        <input type="text" placeholder="Enter Exhibitor Name" name="exhibitor" required/>
-                        <input type="text" placeholder="Enter WebLink URL" name="weblink" required/>
-                      </div><!-- col-2 -->
-                      <i class="fa fa-plus float-right exhAdd"></i>
-
-                    </div><!-- row -->
-                    <input type="text" placeholder="Exhibitor Link" name="exhibitor" required/>
-                    <input type="text" placeholder="Show Your Brand Link" name="exhibitor brand" required/>
-                  </div>
-
-                </div>
-              </div>
-              <div class="panel panel-default">
-                <div class="panel-heading" role="tab" id="headingFive">
-                  <h4 class="panel-title">
-                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
-                      href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                      TICKET INFORMATION
-                    </a>
-                  </h4>
-                </div>
-                <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
-                  <div class="panel-body">
-
-                    <div class="row">
-                      <div class="w-25 p-3 imgUp"><i class="fa fa-times tickdel"></i>
-                        <div class="ticketPreview"></div>
-                        <label class="btn btn-danger">
-                          <i class="fa fa-upload" style="font-size:20px"></i><input type="file" class="uploadFile img"
-                            value="Upload Photo" style="width: 0px;height: 0px;overflow: hidden;"/>
-                        </label>
-                        <input type="text" placeholder="Enter Ticket Amount" name="amount" required/>
-                        <input type="text" placeholder="Enter Ticket Desc" name="ticketDesc" required/>
-                        <input type="text" placeholder="Enter Ticket Link" name="ticketLink" required/>
-                      </div><!-- col-2 -->
-                      <i class="fa fa-plus float-right tickAdd"></i>
-
-                    </div><!-- row -->
-                  </div>
-
-                </div>
-              </div>
-              <div class="panel panel-default">
-                <div class="panel-heading" role="tab" id="headingSix">
-                  <h4 class="panel-title">
-                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseSix"
-                      aria-expanded="true" aria-controls="collapseOne">
-                      SOCIALMEDIA LINKS
-                    </a>
-                  </h4>
-                </div>
-                <div id="collapseSix" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingSix">
-
-                  <div class="panel-body">
-
-                    <label for="facebook"><b>Facebook Link</b></label>
-                    <input type="text" id="facebook" placeholder="Enter Facebook Link" name="facebook" required/>
-
-                    <label for="instagram"><b>Instagram Link</b></label>
-                    <input type="text" id="instagram" placeholder="Enter Instagram Link" name="instagram" required/>
-
-                    <label for="linkedin"><b>LinkedIn Link</b></label>
-                    <input type="text" id="linkedin" placeholder="Enter LinkedIn Link" name="linkedin" required/>
-
-                    <label for="twitter"><b>Twitter Link</b></label>
-                    <input type="text" id="twitter" placeholder="Enter Twitter Link" name="twitter" required/>
-
-                    <label for="youtube"><b>Youtube</b></label>
-                    <input type="text" id="youtube" placeholder="Enter Youtube Link" name="youtube" required/>
 
                   </div>
                 </div>
-              </div>
+                <div class="panel panel-default">
+                  <div class="panel-heading" role="tab" id="headingFive">
+                    <h4 class="panel-title">
+                      <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
+                        href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                        TICKET INFORMATION
+                      </a>
+                    </h4>
+                  </div>
+                  <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
+                    <div class="panel-body">
+
+                      <div class="row">
+                        <div class="w-25 p-3 imgUp" name="tickets"><i class="fa fa-times tickdel"></i>
+                          <div class="ticketPreview"></div>
+                          <label class="btn btn-danger">
+                            <i class="fa fa-upload" style="font-size:20px"></i><input type="file" class="uploadFile img"
+                              value="Upload Photo" style="width: 0px;height: 0px;overflow: hidden;" />
+                          </label>
+                          <input type="text" placeholder="Enter Ticket Amount" name="amount" required />
+                          <input type="text" placeholder="Enter Ticket Desc" name="ticketDesc" required />
+                          <input type="text" placeholder="Enter Ticket Link" name="ticketLink" required />
+                        </div><!-- col-2 -->
+                        <i class="fa fa-plus float-right tickAdd"></i>
+
+                      </div><!-- row -->
+                    </div>
+
+                  </div>
+                </div>
+                <div class="panel panel-default">
+                  <div class="panel-heading" role="tab" id="headingSix">
+                    <h4 class="panel-title">
+                      <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseSix"
+                        aria-expanded="true" aria-controls="collapseOne">
+                        SOCIALMEDIA LINKS
+                      </a>
+                    </h4>
+                  </div>
+                  <div id="collapseSix" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingSix">
+
+                    <div class="panel-body" name="socialMedia">
+
+                      <label for="facebook"><b>Facebook Link</b></label>
+                      <input type="text" id="facebook" placeholder="Enter Facebook Link" name="facebook" required />
+
+                      <label for="instagram"><b>Instagram Link</b></label>
+                      <input type="text" id="instagram" placeholder="Enter Instagram Link" name="instagram" required />
+
+                      <label for="linkedin"><b>LinkedIn Link</b></label>
+                      <input type="text" id="linkedin" placeholder="Enter LinkedIn Link" name="linkedin" required />
+
+                      <label for="twitter"><b>Twitter Link</b></label>
+                      <input type="text" id="twitter" placeholder="Enter Twitter Link" name="twitter" required />
+
+                      <label for="youtube"><b>Youtube</b></label>
+                      <input type="text" id="youtube" placeholder="Enter Youtube Link" name="youtube" required />
+
+                    </div>
+                  </div>
+                </div>
               </div>
               <buttons class="btn btn-secondary badge-pill btn-lg btn-block" onclick="addEvent()">SUBMIT</buttons>
             </div>
