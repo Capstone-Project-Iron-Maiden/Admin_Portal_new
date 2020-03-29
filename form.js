@@ -20,7 +20,6 @@ function logOut() {
   location.replace("login.html")
 }
 
-
 function addEvent() {
 
   //event
@@ -46,11 +45,72 @@ function addEvent() {
       startTime: startTime,
       endTime: endTime
     })
+    console.log("event in")
   }).then(() => {
-    //speakers
+
+    //schedule
+    var registration = document.getElementById("registration").value;
+    var tradeshow = document.getElementById("tradeshow").value;
+    firebase.database().ref('eventTest/' + eventName + '/schedulescreen/tabbar').push({
+      link1: registration,
+      link2: tradeshow
+    })
+
+    var pdfile = $('#file-upload').get(0).files[0];
+  uploadImageAsPromise(pdfile, 'floorplan').then((url)=>{
+    firebase.database().ref('eventTest/' + eventName + '/schedulescreen/floorplan').push({
+      floorplan: url
+    })
+  })
+
+    var rows = document.getElementsByTagName("tbody")[0].rows;
+    for (var i = 0; i < rows.length; i++) {
+      var scheduleName = rows[i].getElementsByTagName("td")[0].innerHTML;
+      var start = rows[i].getElementsByTagName("td")[1].innerHTML;
+      var end = rows[i].getElementsByTagName("td")[2].innerHTML;
+      var speakerdesc = rows[i].getElementsByTagName("td")[3].innerHTML;
+      var room = rows[i].getElementsByTagName("td")[4].innerHTML;
+      var learnmore = rows[i].getElementsByTagName("td")[5].innerHTML;
+      var networking = rows[i].getElementsByTagName("td")[6].innerHTML;
+      if (networking == "y"){
+        networking = true
+      }
+      else{
+        networking = false
+      }
+
+      firebase.database().ref('eventTest/' + eventName + '/schedulescreen/topic').push({
+        scheduleName: scheduleName,
+        start: start,
+        end: end,
+        speakerdesc: speakerdesc,
+        room: room,
+        learnmore: learnmore,
+        networking: networking
+      })
+    }
+
+
+    //social media
+    var facebook = document.getElementById("facebook").value;
+    var instagram = document.getElementById("instagram").value;
+    var linkedIn = document.getElementById("linkedin").value;
+    var twitter = document.getElementById("twitter").value;
+    var youtube = document.getElementById("youtube").value;
+
+    firebase.database().ref('eventTest/' + eventName + '/socialmedia').set({
+      facebook: facebook,
+      instagram: instagram,
+      linkedIn: linkedIn,
+      twitter: twitter,
+      youtube: youtube
+    })
+
+
     $("div").each(function () {
 
-      if ($(this).attr("class") == "col-md-3 bg-mattBlackLight imgUp") {
+      //speakers
+      if ($(this).attr("name") == "speakers") {
         var speakerName = ""
         var speakerTitle = ""
         var speakerCompany = ""
@@ -58,10 +118,8 @@ function addEvent() {
         var keynotespeaker = false;
         var speakerPicture = ""
 
-        var file = ""
-
         $(this).find("input").map(function () {
-          if ($(this).attr("name") == "speakerImage") {
+          if ($(this).attr("type") == "file") {
             file = $(this).get(0).files[0];
           }
           if ($(this).attr("name") == "keySpeaker") {
@@ -87,7 +145,7 @@ function addEvent() {
         })
 
         uploadImageAsPromise(file, 'speakers').then((url) => {
-          firebase.database().ref('eventTest/' + eventName + '/speakers').push({
+          firebase.database().ref('eventTest/' + eventName + '/speakerscreen').push({
             name: speakerName,
             title: speakerTitle,
             company: speakerCompany,
@@ -95,12 +153,96 @@ function addEvent() {
             keynotespeaker: keynotespeaker,
             picture: url
           });
+          console.log("speaker in")
         })
       }
+
+      //ticket
+      if ($(this).attr("name") == "tickets") {
+        var ticketAmount = ""
+        var ticketDesc = ""
+        var ticketLink = ""
+
+        var file = ""
+
+        $(this).find("input").map(function () {
+          if ($(this).attr("type") == "file") {
+            file = $(this).get(0).files[0];
+          }
+          if ($(this).attr("name") == "amount") {
+            ticketAmount = $(this).val();
+          }
+          if ($(this).attr("name") == "ticketDesc") {
+            ticketDesc = $(this).val();
+          }
+          if ($(this).attr("name") == "ticketLink") {
+            ticketLink = $(this).val();
+          }
+        })
+
+        uploadImageAsPromise(file, 'tickets').then((url) => {
+          firebase.database().ref('eventTest/' + eventName + '/ticketscreen').push({
+            value: ticketAmount,
+            desc: ticketDesc,
+            picture: url,
+            link: ticketLink
+          });
+          console.log("ticket in")
+        })
+      }
+
+      //exhibitors
+      if ($(this).attr("id") == "collapseFour") {
+        var exhibitorScreenLink = document.getElementById("exhibitorLink").value;
+        var brandLink = document.getElementById("brandLink").value;
+
+        firebase.database().ref('eventTest/' + eventName + '/exhibitorscreen').push({
+          exhibitorScreenLink: exhibitorScreenLink,
+          brandLink: brandLink
+        }).then(() => {
+          $(this).find("div").each(function () {
+
+            if ($(this).attr("name") == "exhibitors") {
+              var exhibitorLink = ""
+              var sponsor = ""
+
+              var file = ""
+
+              $(this).find("input").map(function () {
+                if ($(this).attr("type") == "file") {
+                  file = $(this).get(0).files[0];
+                }
+                if ($(this).attr("name") == "Sponsor") {
+                  if ($(this).is(":checked")) {
+                    sponsor = true;
+                  }
+                  else {
+                    sponsor = false;
+                  }
+                }
+                if ($(this).attr("name") == "weblink") {
+                  exhibitorLink = $(this).val();
+                }
+              })
+
+              uploadImageAsPromise(file, 'exhibitors').then((url) => {
+                firebase.database().ref('eventTest/' + eventName + '/exhibitorscreen/exhibitor').push({
+                  logo: url,
+                  sponsor: sponsor,
+                  link: exhibitorLink
+                });
+                console.log("exhibitor in")
+              })
+            }
+          })
+
+        })
+
+      }
+
     })
+
   })
-
-
 
 }
 
