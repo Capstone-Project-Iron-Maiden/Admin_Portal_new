@@ -300,10 +300,15 @@ function loadDetails() {
       document.getElementById("startTime").value = event.startTime;
       document.getElementById("endTime").value = event.endTime;
       document.getElementById("desc").value = event.desc;
-      console.log();
-
+      $("#eventLogo").closest(".imgUp").find('.imagePreview').before('</label>').css("background-image", "url(" + event.logo + ")");
       
 
+
+      // for (var key in event) {
+      //   if (event.hasOwnProperty(key)) {
+      //     console.log(key + " -> " + event[key]);
+      //   }
+      // }
 
 
 
