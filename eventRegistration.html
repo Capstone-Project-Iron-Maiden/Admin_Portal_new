@@ -56,7 +56,7 @@
 
             reader.onloadend = function () { // set image data as background of div
               //alert(uploadFile.closest(".upimage").find('.imagePreview').length);
-              uploadFile.closest(".imgUp").find('.imagePreview').before('</label><i class="fa fa-times del"></i>').css("background-image", "url(" + this.result + ")");
+              uploadFile.closest(".imgUp").find('.imagePreview').before('</label>').css("background-image", "url(" + this.result + ")");
             }
           }
 
@@ -341,39 +341,11 @@
 
                       <div class="row">
 
-                        <div class="col-md-3 bg-mattBlackLight imgUp" name="speakers" style="margin: 1rem;"><i
-                            class="fa fa-times del"></i>
+                        
 
 
 
-                          <div class="speakerPreview"></div>
-                          <label class="imageUpload">
-                            <i class="fa fa-upload" style="font-size:20px"></i><input type="file" class="uploadFile img"
-                              value="Upload Photo" style="width: 0px;height: 0px;overflow: hidden;" />
-                          </label>
-
-
-
-                          <label class="keySpeaker">Key Speaker
-                            <input type="checkbox" name="keySpeaker" value="Key Speaker" />
-                            <span class="checkmark"></span>
-                          </label><br />
-                          <label class="text-mattBlackDark" for="event"><b>Speaker Name</b></label>
-                          <input type="text" placeholder="Enter Speaker Name" name="speaker" required />
-
-
-                          <label class="text-mattBlackDark" for="title"><b>Title Name</b></label>
-                          <input type="text" placeholder="Enter Title of speaker" name="title" required />
-
-                          <label class="text-mattBlackDark" for="company"><b>Company Name</b></label>
-                          <input type="text" placeholder="Enter Company name of speaker" name="company" required />
-
-                          <label class="text-mattBlackDark" for="link"><b>Web Link</b></label>
-                          <input type="text" placeholder="Copy url here" name="link" required />
-
-
-
-                        </div><i class="fa fa-plus float-right imgAdd"></i>
+                        <i class="fa fa-plus float-right imgAdd"></i>
                       </div>
 
                     </div>
@@ -420,61 +392,17 @@
                               <th class="text-center">
                                 Is this a networking event?(Y/N)
                               </th>
-                              <th class="text-center">
-                                <button id="addNewRow" class="btn btn-info badge-pill btn-sm">Add New
-                                  Row</button>
-                              </th>
+                              
                             </tr>
                           </thead>
                           <tbody>
-                            <tr>
-                              <td>
-                                Opening Ceremony
-                              </td>
-                              <td>
-                                http://john-m.com
-                              </td>
-                              <td>
-                                Tim
-                              </td>
-                              <td>
-
-                              </td>
-                              <td>
-                                N 201
-                              </td>
-                              <td>
-                                www.lklkl.com
-                              </td>
-                              <td>
-                                Y
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                Ariana Smith
-                              </td>
-                              <td>
-                                https://araiana-smith.com
-                              </td>
-                              <td>
-                                1234567890
-                              </td>
-                              <td>
-
-                              </td>
-                              <td>
-                                1234567890
-                              </td>
-                              <td>
-                                www.lklkl.com
-                              </td>
-                              <td>
-                                Y
-                              </td>
-                            </tr>
+                            
                           </tbody>
                         </table>
+                        <span>
+
+                        <button id="addNewRow" class="btn btn-info badge-pill float-right btn-sm">Add New
+                          Row</button></span>
                       </div>
                       <!--end table-responsive col-md-10 div-->
                       <div class="plan-upload">
@@ -501,18 +429,7 @@
                     <div class="panel-body">
 
                       <div class="row">
-                        <div class="w-25 p-3 imgUp" name="exhibitors"><i class="fa fa-times exhdel"></i>
-                          <div class="exhibitorPreview"></div>
-                          <label class="btn btn-danger">
-                            <i class="fa fa-upload" style="font-size:20px"></i><input type="file" class="uploadFile img"
-                              value="Upload Photo" style="width: 0px;height: 0px;overflow: hidden;" />
-                          </label>
-                          <label class="CheckCheckBox">Sponsor
-                            <input type="checkbox" name="Sponsor" value="Sponsor" />
-                            <span class="checkmark"></span>
-                          </label><br />
-                          <input type="text" placeholder="Enter WebLink URL" name="weblink" required />
-                        </div><!-- col-2 -->
+                       
                         <i class="fa fa-plus float-right exhAdd"></i>
 
                       </div><!-- row -->
@@ -536,16 +453,7 @@
                     <div class="panel-body">
 
                       <div class="row">
-                        <div class="w-25 p-3 imgUp" name="tickets"><i class="fa fa-times tickdel"></i>
-                          <div class="ticketPreview"></div>
-                          <label class="btn btn-danger">
-                            <i class="fa fa-upload" style="font-size:20px"></i><input type="file" class="uploadFile img"
-                              value="Upload Photo" style="width: 0px;height: 0px;overflow: hidden;" />
-                          </label>
-                          <input type="text" placeholder="Enter Ticket Amount" name="amount" required />
-                          <input type="text" placeholder="Enter Ticket Desc" name="ticketDesc" required />
-                          <input type="text" placeholder="Enter Ticket Link" name="ticketLink" required />
-                        </div><!-- col-2 -->
+                       
                         <i class="fa fa-plus float-right tickAdd"></i>
 
                       </div><!-- row -->
