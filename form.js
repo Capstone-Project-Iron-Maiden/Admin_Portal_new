@@ -51,17 +51,17 @@ function addEvent() {
     //schedule
     var registration = document.getElementById("registration").value;
     var tradeshow = document.getElementById("tradeshow").value;
-    firebase.database().ref('eventTest/' + eventName + '/schedulescreen/tabbar').push({
+    firebase.database().ref('eventTest/' + eventName + '/schedulescreen/tabbar').set({
       link1: registration,
       link2: tradeshow
     })
 
     var pdfile = $('#file-upload').get(0).files[0];
-  uploadImageAsPromise(pdfile, 'floorplan').then((url)=>{
-    firebase.database().ref('eventTest/' + eventName + '/schedulescreen/floorplan').push({
-      floorplan: url
+    uploadImageAsPromise(pdfile, 'floorplan').then((url) => {
+      firebase.database().ref('eventTest/' + eventName + '/schedulescreen/floorplan').set({
+        floorplan: url
+      })
     })
-  })
 
     var rows = document.getElementsByTagName("tbody")[0].rows;
     for (var i = 0; i < rows.length; i++) {
@@ -72,10 +72,10 @@ function addEvent() {
       var room = rows[i].getElementsByTagName("td")[4].innerHTML;
       var learnmore = rows[i].getElementsByTagName("td")[5].innerHTML;
       var networking = rows[i].getElementsByTagName("td")[6].innerHTML;
-      if (networking == "y"){
+      if (networking == "y") {
         networking = true
       }
-      else{
+      else {
         networking = false
       }
 
@@ -196,7 +196,7 @@ function addEvent() {
         var exhibitorScreenLink = document.getElementById("exhibitorLink").value;
         var brandLink = document.getElementById("brandLink").value;
 
-        firebase.database().ref('eventTest/' + eventName + '/exhibitorscreen').push({
+        firebase.database().ref('eventTest/' + eventName + '/exhibitorscreen/exhibitorscreenLinks').set({
           exhibitorScreenLink: exhibitorScreenLink,
           brandLink: brandLink
         }).then(() => {
@@ -276,4 +276,69 @@ function uploadImageAsPromise(imageFile, category) {
       }
     );
   });
+}
+
+function loadDetails() {
+  var eventName = location.search.substring(1);
+
+  if (eventName.includes("%20")) {
+    eventName = eventName.replace(/%20/g, " ");
+  }
+
+  document.getElementById("eventName").value = eventName;
+
+  var ref = firebase.database().ref('eventTest/' + eventName);
+
+  ref.on('value',
+    (function (snapshot) {
+      var event = snapshot.val();
+      console.log(event);
+
+      document.getElementById("subTitle").value = event.subTitle;
+      document.getElementById("date").value = event.date;
+      document.getElementById("location").value = event.location;
+      document.getElementById("startTime").value = event.startTime;
+      document.getElementById("endTime").value = event.endTime;
+      document.getElementById("desc").value = event.desc;
+      console.log();
+
+      
+
+
+
+
+      // var keys = Object.keys(event);
+      // console.log(keys);
+
+      // for (var i = 0; i < keys.length; i++) {
+      //   var k = keys[i];
+      //   var name = events[k].name;
+      //   var desc = events[k].desc;
+      //   var logo = events[k].logo;
+      //   var date = events[k].date;
+      //   var location = events[k].location;
+      //   var floorplan = events[k].floorplan;
+      //   var subTitle = events[k].subTitle;
+      //   var time = events[k].time;
+
+
+      //   console.log(imageUrl)
+      //   var eachinsert = "<div class='col-md-4 my-3'><div class='event-existing'><a href='eventRegistration.html?" + name + "'><img src='" + logo + "' style='width:400px;height:300px;'></a><div class='desc'>" + name + "</div></div></div>"
+      //   total = total + eachinsert
+      // }
+
+
+      // document.getElementById("eventDisplay").innerHTML = total
+      /*
+      events.forEach(myFunction);
+
+      function myFunction(item, index) {
+          document.getElementById("demo").innerHTML += index + ":" + item + "<br>"; 
+      }*/
+    }),
+    (function (error) {
+      console.log(error)
+    })
+  );
+
 }

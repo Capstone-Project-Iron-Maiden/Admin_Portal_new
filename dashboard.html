@@ -1,99 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compaitable" content="ie=edge" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.1/iconfont/material-icons.min.css"/>
-      <link rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.1/iconfont/material-icons.min.css" />
-    <link href="css/bootstrap.min.css" rel="stylesheet" />
-    <link href="css/style.css" rel="stylesheet" />
-    <link href="css/dashboard.css" rel="stylesheet" />
-    
-    
-    <title>Dashboard</title>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compaitable" content="ie=edge" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.1/iconfont/material-icons.min.css" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.1/iconfont/material-icons.min.css" />
+  <link href="css/bootstrap.min.css" rel="stylesheet" />
+  <link href="css/style.css" rel="stylesheet" />
+  <link href="css/dashboard.css" rel="stylesheet" />
 
 
-    <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-database.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-storage.js"></script>
-
-    <script src="form.js"></script>
-
-    <script>
-      firebase.auth().onAuthStateChanged(function (user) {
-        if (user) {
-          var email = user.email;
-          console.log("Active User " + email);
-        } else {
-          console.log("No user!")
-          location.href="login.html"
-        }
-      });
-    </script>
+  <title>Dashboard</title>
 
 
-  </head>
-  <body>
-    <!--Navbar Starts-->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-      <button class="navbar-toggler sideMenuToggler" type="button">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <a class="navbar-brand" href="#">TORONTOJOBS.ca</a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
+  <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-storage.js"></script>
 
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item dropdown">
-            <a
-              class="nav-link dropdown-toggle"
-              href="javascript:logOut();"
-              id="navbarDropdown"
-              role="button"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
-              Logout
-            </a>
+  <script src="form.js"></script>
+
+  <script>
+    firebase.auth().onAuthStateChanged(function (user) {
+      if (user) {
+        var email = user.email;
+        console.log("Active User " + email);
+      } else {
+        console.log("No user!")
+        location.href = "login.html"
+      }
+    });
+  </script>
+
+
+</head>
+
+<body>
+  <!--Navbar Starts-->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <button class="navbar-toggler sideMenuToggler" type="button">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="#">TORONTOJOBS.ca</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="javascript:logOut();" id="navbarDropdown" role="button"
+            aria-haspopup="true" aria-expanded="false">
+            Logout
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <!--Navbar Ends-->
+  <div class="wrapper d-flex">
+    <div class="sideMenu bg-mattBlackLight">
+      <div class="sidebar">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a href="dashboard.html" class="nav-link px-2"><i class="material-icons icon">
+                dashboard
+              </i><span class="text">Dashboard</span></a>
           </li>
-        </ul>
-      </div>
-    </nav>
-    <!--Navbar Ends-->
-    <div class="wrapper d-flex">
-      <div class="sideMenu bg-mattBlackLight">
-        <div class="sidebar">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a href="dashboard.html" class="nav-link px-2"
-                ><i class="material-icons icon">
-                    dashboard
-                </i><span class="text">Dashboard</span
-              ></a>
-            </li>
-            <li class="nav-item">
-              <a href="userprofile.html" class="nav-link px-2"
-                ><i class="material-icons icon">
-                    person
-                </i><span class="text">User Profile</span
-              ></a>
-            </li>
-            <!-- <li class="nav-item">
+          <li class="nav-item">
+            <a href="userprofile.html" class="nav-link px-2"><i class="material-icons icon">
+                person
+              </i><span class="text">User Profile</span></a>
+          </li>
+          <!-- <li class="nav-item">
               <a href="speakers.html" class="nav-link px-2"
                 ><i class="material-icons icon">
                     face
@@ -114,97 +98,87 @@
                 </i><span class="text">Settings</span
               ></a>
             </li> -->
-            <li class="nav-item">
-              <a href="#" class="nav-link sideMenuToggler px-2"
-                ><i class="material-icons icon">
-                    view_list
-                </i><span class="text">Resize</span
-              ></a>
-            </li>
-          </ul>
-        </div>
+          <li class="nav-item">
+            <a href="#" class="nav-link sideMenuToggler px-2"><i class="material-icons icon">
+                view_list
+              </i><span class="text">Resize</span></a>
+          </li>
+        </ul>
       </div>
-
-
-
-      <script>
-        var imageUrl = ""
-        var total = ""
-                var ref = firebase.database().ref('eventTest');
-        
-                ref.on('value',
-                    (function (snapshot) {
-                        var events = snapshot.val();
-                        console.log(events);
-                        var keys = Object.keys(events);
-                        console.log(keys);
-        
-                        for (var i = 0; i < keys.length; i++) {
-                            var k = keys[i];
-                            var name = events[k].name;
-                            var desc = events[k].desc;
-                            var logo = events[k].logo;
-                            var date = events[k].date;
-                            var location = events[k].location;
-                            var floorplan = events[k].floorplan;
-                            var subTitle = events[k].subTitle;
-                            var time = events[k].time;
-        
-                            
-                            console.log(imageUrl)
-                            var eachinsert = "<div class='col-md-4 my-3'><div class='event-existing'><a href='eventRegistration.html'><img src='" + logo + "' style='width:400px;height:300px;'></a><div class='desc'>" + name + "</div></div></div>"
-                            total = total + eachinsert
-                        }
-        
-        
-                        document.getElementById("eventDisplay").innerHTML = total
-                        /*
-                        events.forEach(myFunction);
-                
-                        function myFunction(item, index) {
-                            document.getElementById("demo").innerHTML += index + ":" + item + "<br>"; 
-                        }*/
-                    }),
-                    (function (error) {
-                        console.log(error)
-                    })
-                );
-        
-                //document.getElementById("eventDisplay").innerHTML = total
-        
-            </script>
-        
-            <script>
-                function retrieveImage(filename) {
-        
-        
-                }
-
-            </script>
-
-
-
-      <!--Main content starts-->
-      <div class="content">
-      <main>
-        
-        <div class="container-fluid">
-         
-            <div id="eventDisplay" style="margin-top: 2rem;" class="row">
-                
-            </div>
-            <!--Event Register Starts-->
-            
-            <!--Event Register Ends-->
-        </div>
-        
-      </main>
-      </div>
-      <!--Main content ends-->
     </div>
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/script.js"></script>
-    <script src="js/jquery.slimscroll.min.js"></script>
-  </body>
+
+
+
+    <script>
+      var imageUrl = ""
+      var total = ""
+      var ref = firebase.database().ref('eventTest');
+
+      ref.on('value',
+        (function (snapshot) {
+          var events = snapshot.val();
+          console.log(events);
+          var keys = Object.keys(events);
+          console.log(keys);
+
+          for (var i = 0; i < keys.length; i++) {
+            var k = keys[i];
+            var name = events[k].name;
+            var desc = events[k].desc;
+            var logo = events[k].logo;
+            var date = events[k].date;
+            var location = events[k].location;
+            var floorplan = events[k].floorplan;
+            var subTitle = events[k].subTitle;
+            var time = events[k].time;
+
+
+            console.log(imageUrl)
+            var eachinsert = "<div class='col-md-4 my-3'><div class='event-existing'><a href='eventRegistration.html?" + name + "'><img src='" + logo + "' style='width:400px;height:300px;'></a><div class='desc'>" + name + "</div></div></div>"
+            total = total + eachinsert
+          }
+
+
+          document.getElementById("eventDisplay").innerHTML = total
+          /*
+          events.forEach(myFunction);
+  
+          function myFunction(item, index) {
+              document.getElementById("demo").innerHTML += index + ":" + item + "<br>"; 
+          }*/
+        }),
+        (function (error) {
+          console.log(error)
+        })
+      );
+
+                //document.getElementById("eventDisplay").innerHTML = total
+
+    </script>
+
+
+    <!--Main content starts-->
+    <div class="content">
+      <main>
+
+        <div class="container-fluid">
+
+          <div id="eventDisplay" style="margin-top: 2rem;" class="row">
+
+          </div>
+          <!--Event Register Starts-->
+
+          <!--Event Register Ends-->
+        </div>
+
+      </main>
+    </div>
+    <!--Main content ends-->
+  </div>
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/script.js"></script>
+  <script src="js/jquery.slimscroll.min.js"></script>
+</body>
+
 </html>
