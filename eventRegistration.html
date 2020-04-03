@@ -22,13 +22,17 @@
 
   <script src="form.js"></script>
 
-
+<script>
+  $(document).ready(function(){
+    loadDetails();
+  })
+</script>
 
   <title>Dashboard</title>
 
 </head>
 
-<body>
+<body >
   <script src="js/jquery.slimscroll.min.js"></script>
   <script src="js/bootstrap.bundle.min.js"></script>
   <script>
@@ -339,7 +343,7 @@
 
 
 
-                      <div class="row">
+                      <div id="speakerRow" class="row">
 
                         
 
@@ -428,7 +432,7 @@
                   <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
                     <div class="panel-body">
 
-                      <div class="row">
+                      <div id="exhibitorRow" class="row">
                        
                         <i class="fa fa-plus float-right exhAdd"></i>
 
@@ -452,7 +456,7 @@
                   <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
                     <div class="panel-body">
 
-                      <div class="row">
+                      <div id="ticketRow" class="row">
                        
                         <i class="fa fa-plus float-right tickAdd"></i>
 
@@ -493,7 +497,7 @@
                   </div>
                 </div>
               </div>
-              <buttons class="btn btn-secondary badge-pill btn-lg btn-block" onclick="loadDetails()">SUBMIT</buttons>
+              <buttons class="btn btn-secondary badge-pill btn-lg btn-block" onclick="addEvent()">SUBMIT</buttons>
             </div>
             <!--col-sm-12 my-2 ends-->
 
