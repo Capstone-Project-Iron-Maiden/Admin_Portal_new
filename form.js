@@ -354,7 +354,7 @@ function loadDetails() {
   
     var ref = firebase.database().ref('eventTest/' + eventName);
   
-    ref.on('value',
+    ref.once('value',
       (function (snapshot) {
         var event = snapshot.val();
         console.log(event);
